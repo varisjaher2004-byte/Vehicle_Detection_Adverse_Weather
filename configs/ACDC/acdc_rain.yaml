@@ -1,0 +1,13 @@
+names:
+- person
+- rider
+- car
+- truck
+- bus
+- train
+- motorcycle
+- bicycle
+nc: 8
+path: D:\DMSc_Dissertation_Project\datasets\ACDC\YOLO_RAIN
+train: images/train
+val: images/val

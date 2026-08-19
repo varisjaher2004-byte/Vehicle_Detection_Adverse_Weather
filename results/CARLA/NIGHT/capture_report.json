@@ -1,0 +1,286 @@
+{
+  "status": "PASS_CAPTURE",
+  "script_version": "92.4",
+  "map": "Carla/Maps/Town10HD_Opt",
+  "route_json": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_reference_route\\run_20260803_201706\\locked_town10_reference_route.json",
+  "route_rank": 2,
+  "scene": "Town10 straight full night presentation: 2 standing persons; ego -> motorcycle -> car; oncoming bus -> truck",
+  "capture_architecture": "Accepted Step 90 synchronous Town10 engine",
+  "renderer_method": {
+    "native_negative_sun": false,
+    "source_sun_altitude_angle": 38.0,
+    "final_visual": "Post-processed synthetic night from genuine CARLA RGB",
+    "grading_version": "cpu_day_for_night_v5_calibrated_actor_lights",
+    "night_strength": 1.0,
+    "sensor_noise_strength": 0.35,
+    "genuine_vehicle_lights": {
+      "ego": "carla.libcarla.VehicleLightState(3)",
+      "forward_motorcycle": "carla.libcarla.VehicleLightState(3)",
+      "forward_car": "carla.libcarla.VehicleLightState(3)",
+      "oncoming_bus": "carla.libcarla.VehicleLightState(3)",
+      "oncoming_truck": "carla.libcarla.VehicleLightState(3)"
+    },
+    "actor_anchored_light_cues_enabled": true,
+    "lamp_lateral_fraction": {
+      "forward_motorcycle": 0.0,
+      "forward_car": 0.56,
+      "oncoming_bus": 0.38,
+      "oncoming_truck": 0.35
+    },
+    "lamp_center_y_bias": {
+      "forward_motorcycle": 0.0,
+      "forward_car": 0.0,
+      "oncoming_bus": -0.07,
+      "oncoming_truck": -0.24
+    },
+    "legacy_bbox_light_cues_enabled": false,
+    "deterministic_seed": 9007,
+    "reason": "Native negative-sun Town10 caused repeatable UE4/D3D device-loss on this machine.",
+    "scientific_use_note": "This output is a controlled CPU day-for-night domain, not native physically rendered CARLA night illumination."
+  },
+  "ground_truth_policy": {
+    "raw_projection_retained": true,
+    "label_eligible_requires": {
+      "minimum_depth_m": 2.0,
+      "maximum_depth_m": 48.0,
+      "minimum_bbox_width_px": 6.0,
+      "minimum_bbox_height_px": 8.0,
+      "minimum_bbox_area_px2": 96.0,
+      "centre_inside_frame": true,
+      "edge_touching_or_truncated": false
+    },
+    "encounter_field_semantics": "Backward-compatible alias for label_eligible."
+  },
+  "resolution": [
+    640,
+    360
+  ],
+  "fps": 10.0,
+  "world_fps": 20.0,
+  "frame_count": 140,
+  "first_visible_frame": {
+    "forward_motorcycle": 1,
+    "forward_car": 1,
+    "oncoming_bus": 1,
+    "oncoming_truck": 1,
+    "person_1": 1,
+    "person_2": 1
+  },
+  "visible_frame_counts": {
+    "forward_motorcycle": 140,
+    "forward_car": 63,
+    "oncoming_bus": 90,
+    "oncoming_truck": 126,
+    "person_1": 24,
+    "person_2": 129
+  },
+  "first_encounter_frame": {
+    "forward_motorcycle": 1,
+    "forward_car": 1,
+    "oncoming_bus": 21,
+    "oncoming_truck": 41,
+    "person_1": 1,
+    "person_2": 36
+  },
+  "encounter_frame_counts": {
+    "forward_motorcycle": 140,
+    "forward_car": 52,
+    "oncoming_bus": 54,
+    "oncoming_truck": 73,
+    "person_1": 22,
+    "person_2": 73
+  },
+  "first_label_eligible_frame": {
+    "forward_motorcycle": 1,
+    "forward_car": 1,
+    "oncoming_bus": 21,
+    "oncoming_truck": 41,
+    "person_1": 1,
+    "person_2": 36
+  },
+  "label_eligible_frame_counts": {
+    "forward_motorcycle": 140,
+    "forward_car": 52,
+    "oncoming_bus": 54,
+    "oncoming_truck": 73,
+    "person_1": 22,
+    "person_2": 73
+  },
+  "ignored_projected_frame_counts": {
+    "forward_motorcycle": 0,
+    "forward_car": 11,
+    "oncoming_bus": 36,
+    "oncoming_truck": 53,
+    "person_1": 2,
+    "person_2": 56
+  },
+  "edge_touching_frame_counts": {
+    "forward_motorcycle": 0,
+    "forward_car": 11,
+    "oncoming_bus": 16,
+    "oncoming_truck": 13,
+    "person_1": 2,
+    "person_2": 21
+  },
+  "target_quality_summary": {
+    "forward_motorcycle": {
+      "projected_visible_frames": 140,
+      "label_eligible_frames": 140,
+      "ignored_projected_frames": 0,
+      "edge_touching_frames": 0,
+      "projected_bbox_area_px2": {
+        "min": 98.91015184835355,
+        "median": 597.4587476966121,
+        "max": 2323.164610135953
+      },
+      "projected_depth_m": {
+        "min": 8.412930280311647,
+        "median": 15.555321069825624,
+        "max": 37.22589487742568
+      }
+    },
+    "forward_car": {
+      "projected_visible_frames": 63,
+      "label_eligible_frames": 52,
+      "ignored_projected_frames": 11,
+      "edge_touching_frames": 11,
+      "projected_bbox_area_px2": {
+        "min": 125.09584220868258,
+        "median": 761.7579689484476,
+        "max": 1918.832074334151
+      },
+      "projected_depth_m": {
+        "min": 18.836938239846646,
+        "median": 29.626217096722193,
+        "max": 37.075897975487564
+      }
+    },
+    "oncoming_bus": {
+      "projected_visible_frames": 90,
+      "label_eligible_frames": 54,
+      "ignored_projected_frames": 36,
+      "edge_touching_frames": 16,
+      "projected_bbox_area_px2": {
+        "min": 639.2667543615561,
+        "median": 4372.0071780866,
+        "max": 103242.86451477424
+      },
+      "projected_depth_m": {
+        "min": 2.4829698660051758,
+        "median": 26.091481119135388,
+        "max": 58.4569051457773
+      }
+    },
+    "oncoming_truck": {
+      "projected_visible_frames": 126,
+      "label_eligible_frames": 73,
+      "ignored_projected_frames": 53,
+      "edge_touching_frames": 13,
+      "projected_bbox_area_px2": {
+        "min": 130.8970962858606,
+        "median": 854.887557047069,
+        "max": 95658.75417954376
+      },
+      "projected_depth_m": {
+        "min": 1.834294759407726,
+        "median": 32.13560574043545,
+        "max": 75.73477178294341
+      }
+    },
+    "person_1": {
+      "projected_visible_frames": 24,
+      "label_eligible_frames": 22,
+      "ignored_projected_frames": 2,
+      "edge_touching_frames": 2,
+      "projected_bbox_area_px2": {
+        "min": 237.09140229254635,
+        "median": 448.7152015624914,
+        "max": 975.6335807070368
+      },
+      "projected_depth_m": {
+        "min": 11.16466498161756,
+        "median": 16.069313058773375,
+        "max": 21.01862485085803
+      }
+    },
+    "person_2": {
+      "projected_visible_frames": 129,
+      "label_eligible_frames": 73,
+      "ignored_projected_frames": 56,
+      "edge_touching_frames": 21,
+      "projected_bbox_area_px2": {
+        "min": 35.6556783888759,
+        "median": 308.26736677767417,
+        "max": 1011.0793078466844
+      },
+      "projected_depth_m": {
+        "min": 9.189711678316154,
+        "median": 15.37806846571031,
+        "max": 41.01945577896185
+      }
+    }
+  },
+  "image_quality_summary": {
+    "source": {
+      "mean_luma_mean": 102.37400520833333,
+      "median_luma_mean": 102.14726562499999,
+      "mean_luma_p01": 9.771428571428572,
+      "median_luma_p01": 12.0,
+      "mean_luma_p50": 97.71428571428571,
+      "median_luma_p50": 97.0,
+      "mean_luma_p99": 203.32857142857142,
+      "median_luma_p99": 200.0,
+      "mean_shadow_fraction": 0.029074094742063496,
+      "median_shadow_fraction": 0.020488281249999997,
+      "mean_highlight_fraction": 0.00022588045634920636,
+      "median_highlight_fraction": 0.00011935763888888888,
+      "mean_sharpness_laplacian": 10964.423800223214,
+      "median_sharpness_laplacian": 11471.06494140625
+    },
+    "night": {
+      "mean_luma_mean": 36.196612382192455,
+      "median_luma_mean": 36.21009331597222,
+      "mean_luma_p01": 1.8071428571428572,
+      "median_luma_p01": 2.0,
+      "mean_luma_p50": 33.05,
+      "median_luma_p50": 33.0,
+      "mean_luma_p99": 83.89285714285714,
+      "median_luma_p99": 82.0,
+      "mean_shadow_fraction": 0.13103478422619047,
+      "median_shadow_fraction": 0.11405815972222222,
+      "mean_highlight_fraction": 0.0001150483630952381,
+      "median_highlight_fraction": 6.076388888888889e-05,
+      "mean_sharpness_laplacian": 1941.490522112165,
+      "median_sharpness_laplacian": 2009.6986694335938
+    }
+  },
+  "checks": {
+    "full_frame_count": true,
+    "motorcycle_seen": true,
+    "car_seen": true,
+    "bus_seen": true,
+    "truck_seen": true,
+    "person_1_seen": true,
+    "person_2_seen": true,
+    "night_darker_than_source": true,
+    "night_not_fully_crushed": true
+  },
+  "failure_reasons": [],
+  "source_video": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_source_raw.mp4",
+  "final_night_video": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\town10_night_fullscene_FINAL.mp4",
+  "ground_truth_metrics": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\ground_truth_metrics.csv",
+  "clean_review_frames": [
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_001.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_035.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_070.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_105.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_140.png"
+  ],
+  "annotated_review_frames": [
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_001_ANNOTATED.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_035_ANNOTATED.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_070_ANNOTATED.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_105_ANNOTATED.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_review_140_ANNOTATED.png"
+  ]
+}

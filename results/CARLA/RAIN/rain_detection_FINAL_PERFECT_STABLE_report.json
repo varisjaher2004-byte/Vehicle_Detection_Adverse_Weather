@@ -1,0 +1,55 @@
+{
+  "status": "REVIEW_PERFECT_STABLE",
+  "input_video": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_rain_signal_continuation\\run_20260807_090117\\rain_signal_raw.mp4",
+  "output_video": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_rain_signal_continuation\\run_20260807_090117\\rain_signal_detected_FINAL_PERFECT_STABLE.mp4",
+  "model": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\training_runs\\carla_multiclass_yolov8s_final\\weights\\best.pt",
+  "method_label": "YOLOv8s + CARLA GT-Aided Stable Tracking",
+  "intended_use": "Qualitative final presentation/demo visualisation. Stable display counts are not pure YOLO recall.",
+  "stabilization": {
+    "centre_size_filter": "adaptive exponential smoothing with velocity prediction",
+    "deadband": "tiny sub-pixel centre/size changes suppressed",
+    "yolo_residual_influence": "low and bounded to prevent rain-time prediction jitter",
+    "person_minimum_box_size": "minimum readable width/height to avoid thin flickering boxes",
+    "display_rule": "all valid GT-visible frames"
+  },
+  "real_yolo_evidence_frames": {
+    "lead_car": 244,
+    "pedestrian_1": 82,
+    "pedestrian_2": 44
+  },
+  "first_visible_frame": {
+    "lead_car": 1,
+    "pedestrian_1": 1,
+    "pedestrian_2": 1
+  },
+  "last_visible_frame": {
+    "lead_car": 355,
+    "pedestrian_1": 328,
+    "pedestrian_2": 320
+  },
+  "gt_visible_duration_frames": {
+    "lead_car": 355,
+    "pedestrian_1": 328,
+    "pedestrian_2": 320
+  },
+  "stable_display_frames": {
+    "lead_car": 355,
+    "pedestrian_1": 295,
+    "pedestrian_2": 282
+  },
+  "simultaneous_people_frames": 282,
+  "checks": {
+    "lead_car_yolo_evidence": true,
+    "pedestrian_1_yolo_evidence": true,
+    "pedestrian_2_yolo_evidence": true,
+    "lead_car_displayed_all_gt_visible_frames": true,
+    "pedestrian_1_displayed_all_gt_visible_frames": false,
+    "pedestrian_2_displayed_all_gt_visible_frames": false,
+    "exactly_three_controlled_targets_only": true,
+    "raw_video_not_modified": true
+  },
+  "failure_reasons": [
+    "pedestrian_1_displayed_all_gt_visible_frames",
+    "pedestrian_2_displayed_all_gt_visible_frames"
+  ]
+}

@@ -1,0 +1,14 @@
+Validating C:\Users\Varis\runs\detect\ACDC_Fog_Project\train_yolov8l_fog-5\weights\best.pt...
+Ultralytics 8.4.81  Python-3.13.3 torch-2.11.0+cu128 CUDA:0 (NVIDIA GeForce RTX 3050 6GB Laptop GPU, 6144MiB)
+Model summary (fused): 113 layers, 43,612,776 parameters, 0 gradients, 164.8 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)
+                   all        100        640      0.643      0.482      0.532      0.335
+                person         36         62      0.681      0.452      0.491      0.238
+                 rider         10         11      0.793      0.273      0.464      0.218
+                   car         99        496      0.687      0.768       0.79      0.571
+                 truck         33         41      0.562      0.281      0.338      0.228
+                   bus          5          5          1       0.78      0.829      0.632
+                 train          3          3      0.335      0.667      0.665      0.409
+            motorcycle         10         11      0.397      0.273      0.224      0.147
+               bicycle         10         11       0.69      0.364      0.457      0.238
+Speed: 0.4ms preprocess, 13.3ms inference, 0.0ms loss, 2.6ms postprocess per image

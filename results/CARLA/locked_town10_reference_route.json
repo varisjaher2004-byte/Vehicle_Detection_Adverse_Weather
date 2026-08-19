@@ -1,0 +1,143 @@
+{
+  "generated_at": "2026-08-03T20:18:00.027854",
+  "status": "REFERENCE_ROUTE_LOCKED",
+  "map": "Carla/Maps/Town10HD_Opt",
+  "dataset_root": "D:\\DMSc_Dissertation_Project\\datasets\\Generated",
+  "weather_inventory": {
+    "clear": {
+      "folder": "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear",
+      "image_count": 49
+    },
+    "light_rain": {
+      "folder": "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\light_rain",
+      "image_count": 89
+    },
+    "heavy_rain": {
+      "folder": "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\heavy_rain",
+      "image_count": 159
+    },
+    "light_fog": {
+      "folder": "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\light_fog",
+      "image_count": 87
+    },
+    "dense_fog": {
+      "folder": "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\dense_fog",
+      "image_count": 88
+    }
+  },
+  "clear_reference_images": [
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\466845.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\466880.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\466924.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\466971.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\467009.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\467057.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\467127.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\467176.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\467233.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\467303.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\467358.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Generated\\clear\\467449.png"
+  ],
+  "scan_count": 50,
+  "selected": {
+    "spawn_index": 36,
+    "road_id": 11,
+    "lane_id": 1,
+    "match_score": 0.3674773574650028,
+    "feature_score": 0.23868312757201646,
+    "edge_score": 0.17599411057642897,
+    "hash_score": 0.75,
+    "histogram_score": 0.9422935711871953,
+    "transform": {
+      "location": {
+        "x": 67.65974426269531,
+        "y": 69.8227767944336,
+        "z": 0.5999999642372131
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.07327299565076828,
+        "roll": 0.0
+      }
+    }
+  },
+  "top_matches": [
+    {
+      "display_rank": 1,
+      "spawn_index": 36,
+      "road_id": 11,
+      "lane_id": 1,
+      "match_score": 0.3674773574650028,
+      "feature_score": 0.23868312757201646,
+      "edge_score": 0.17599411057642897,
+      "hash_score": 0.75,
+      "histogram_score": 0.9422935711871953,
+      "transform": {
+        "location": {
+          "x": 67.65974426269531,
+          "y": 69.8227767944336,
+          "z": 0.5999999642372131
+        },
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.07327299565076828,
+          "roll": 0.0
+        }
+      }
+    },
+    {
+      "display_rank": 2,
+      "spawn_index": 31,
+      "road_id": 12,
+      "lane_id": 1,
+      "match_score": 0.32752204564827914,
+      "feature_score": 0.16861219195849547,
+      "edge_score": 0.14107979543740345,
+      "hash_score": 0.78125,
+      "histogram_score": 0.9322856609907337,
+      "transform": {
+        "location": {
+          "x": -1.0131598711013794,
+          "y": 69.71400451660156,
+          "z": 0.5999999642372131
+        },
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.07327299565076828,
+          "roll": 0.0
+        }
+      }
+    },
+    {
+      "display_rank": 3,
+      "spawn_index": 33,
+      "road_id": 12,
+      "lane_id": 1,
+      "match_score": 0.2582624563691424,
+      "feature_score": 0.06449948400412797,
+      "edge_score": 0.12525698482410036,
+      "hash_score": 0.71875,
+      "histogram_score": 0.9215764772181596,
+      "transform": {
+        "location": {
+          "x": 14.130091667175293,
+          "y": 69.71400451660156,
+          "z": 0.5999999642372131
+        },
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.07327299565076828,
+          "roll": 0.0
+        }
+      }
+    }
+  ],
+  "locked_camera": {
+    "blueprint": "sensor.camera.rgb",
+    "x": 1.5,
+    "y": 0.0,
+    "z": 2.4,
+    "fov": 90.0
+  }
+}

@@ -1,0 +1,17 @@
+TOWN10 CLEAR STABLE FINAL
+============================================================================
+Status: PASS
+Input: D:\DMSc_Dissertation_Project\datasets\Simulation_Project\CARLA\outputs\final_demo_reference\town10_clear_final\town10_clear_raw.mp4
+Model: D:\DMSc_Dissertation_Project\datasets\Simulation_Project\CARLA\outputs\training_runs\carla_multiclass_yolov8s_final\weights\best.pt
+Method: strict YOLOv8s temporal tracking; uncertain detections hidden
+Accepted classes: car, truck, bus
+Hidden classes: none
+Source duration: 16.00 s
+Final duration: 10.70 s
+Trimmed ending: 5.30 s
+car: accepted=True, detection_frames=15, median_confidence=0.866, gt_valid_ratio=1.0, reason=none
+truck: accepted=True, detection_frames=19, median_confidence=0.915, gt_valid_ratio=1.0, reason=none
+bus: accepted=True, detection_frames=19, median_confidence=0.927, gt_valid_ratio=1.0, reason=none
+Final video: D:\DMSc_Dissertation_Project\datasets\Simulation_Project\CARLA\outputs\final_demo_reference\town10_clear_stable_final\town10_clear_stable_detected.mp4
+Report: D:\DMSc_Dissertation_Project\datasets\Simulation_Project\CARLA\outputs\final_demo_reference\town10_clear_stable_final\acceptance_report.json
+Frame metrics: D:\DMSc_Dissertation_Project\datasets\Simulation_Project\CARLA\outputs\final_demo_reference\town10_clear_stable_final\frame_metrics.csv

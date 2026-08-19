@@ -1,0 +1,8 @@
+YOLOv8 Training Summary - ACDC Rain
+------------------------------------
+Total Epochs: 100
+Best Epoch: 73
+Best mAP@50: 0.2736
+Best mAP@50-95: 0.1599
+Final Precision: 0.3444
+Final Recall: 0.2858

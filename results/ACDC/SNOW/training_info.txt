@@ -1,0 +1,9 @@
+
+ACDC Dissertation Training Summary
+Condition: SNOW
+Project Path: C:\Users\Varis\runs\detect\ACDC_Snow_Project\train_yolov8l_snow-13
+Date: 2026-07-17
+Performance Summary:
+- Max mAP50: 0.485
+- Max mAP50-95: 0.270
+Notes: Backup includes complete training diagnostics for ACDC snow dataset.

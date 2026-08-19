@@ -1,0 +1,4 @@
+Dissertation Project Backup: FOG
+Path: C:\Users\Varis\runs\detect\DAWN_FOG_Project\train_yolov8l_fog-4
+Final mAP50: 0.0959
+All graphs and weights successfully backed up to D: drive.

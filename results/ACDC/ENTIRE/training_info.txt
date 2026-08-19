@@ -1,0 +1,4 @@
+Dissertation Project Backup: ENTIRE
+Path: C:\Users\Varis\runs\detect\ACDC_ENTIRE_Project\train_yolov8l_entire-4
+Final mAP50: 0.4316
+All graphs and weights successfully backed up.

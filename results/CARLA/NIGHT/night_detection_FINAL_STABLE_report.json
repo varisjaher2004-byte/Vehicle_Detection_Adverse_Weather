@@ -1,0 +1,173 @@
+{
+  "status": "PASS_DETECTION",
+  "input_video": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\town10_night_fullscene_FINAL.mp4",
+  "ground_truth": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\ground_truth_metrics.csv",
+  "model": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\training_runs\\carla_multiclass_yolov8s_final\\weights\\best.pt",
+  "output_video": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\town10_night_detected_FINAL_STABLE.mp4",
+  "metrics_csv": "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_detection_FINAL_STABLE_metrics.csv",
+  "video": {
+    "width": 640,
+    "height": 360,
+    "fps": 10.0,
+    "frame_count": 140
+  },
+  "inference": {
+    "imgsz": 1280,
+    "confidence_threshold": 0.0015,
+    "iou_threshold": 0.78,
+    "device": "0",
+    "views": [
+      "original",
+      "low_light_enhanced"
+    ]
+  },
+  "method": {
+    "raw_yolo_evaluation": "Original synthetic-night frames only. CARLA label-eligible boxes are used only for one-to-one matching and TP/FN/FP evaluation; no GT coordinate changes a raw YOLO box.",
+    "presentation_video": "Accepted dense-fog-style YOLOv8s + CARLA GT-Aided Stable Tracking. An actor is displayed only if it has at least one real YOLO evidence frame, but stable presentation boxes are GT-anchored and are not raw detector recall.",
+    "target_policy": "Vehicle-only evaluation and presentation: motorcycle, car, bus, and truck. Person detections and person GT tracks are excluded, so no PERSON overlay can be propagated by the GT-aided presentation layer.",
+    "synthetic_night_note": "Input is Step 92.1 post-processed synthetic night from genuine CARLA RGB, not native negative-sun CARLA illumination."
+  },
+  "raw_yolo_original_view": {
+    "true_positives": 240,
+    "false_positives": 1096,
+    "false_negatives": 79,
+    "ignored_predictions_on_noneligible_controlled_actors": 248,
+    "precision": 0.17964071856287425,
+    "recall": 0.7523510971786834,
+    "f1": 0.29003021148036257
+  },
+  "per_target": {
+    "forward_motorcycle": {
+      "eligible_gt_frames": 140,
+      "raw_yolo_matched_frames": 120,
+      "raw_recall": 0.8571428571428571,
+      "mean_raw_confidence": 0.503903400459482,
+      "median_raw_confidence": 0.7439920902252197,
+      "mean_raw_iou": 0.5920932537964712,
+      "mean_raw_center_ratio": 0.0854443588280115,
+      "raw_source_class_counts": {
+        "rider": 111,
+        "motorcycle": 9
+      },
+      "combined_view_evidence_frames": 121,
+      "combined_source_class_counts": {
+        "rider": 110,
+        "motorcycle": 11
+      },
+      "combined_source_view_counts": {
+        "original": 106,
+        "low_light_enhanced": 15
+      },
+      "stable_display_frames": 140,
+      "first_display_frame": 1,
+      "last_display_frame": 140
+    },
+    "forward_car": {
+      "eligible_gt_frames": 52,
+      "raw_yolo_matched_frames": 49,
+      "raw_recall": 0.9423076923076923,
+      "mean_raw_confidence": 0.2125674297044776,
+      "median_raw_confidence": 0.06033423915505409,
+      "mean_raw_iou": 0.5466637293259535,
+      "mean_raw_center_ratio": 0.1915089595631345,
+      "raw_source_class_counts": {
+        "car": 36,
+        "bus": 13
+      },
+      "combined_view_evidence_frames": 49,
+      "combined_source_class_counts": {
+        "car": 36,
+        "bus": 12,
+        "truck": 1
+      },
+      "combined_source_view_counts": {
+        "original": 35,
+        "low_light_enhanced": 14
+      },
+      "stable_display_frames": 52,
+      "first_display_frame": 1,
+      "last_display_frame": 140
+    },
+    "oncoming_bus": {
+      "eligible_gt_frames": 54,
+      "raw_yolo_matched_frames": 35,
+      "raw_recall": 0.6481481481481481,
+      "mean_raw_confidence": 0.3605646077709805,
+      "median_raw_confidence": 0.38167455792427063,
+      "mean_raw_iou": 0.6425214138597881,
+      "mean_raw_center_ratio": 0.07571435470525727,
+      "raw_source_class_counts": {
+        "bus": 35
+      },
+      "combined_view_evidence_frames": 36,
+      "combined_source_class_counts": {
+        "bus": 36
+      },
+      "combined_source_view_counts": {
+        "original": 26,
+        "low_light_enhanced": 10
+      },
+      "stable_display_frames": 54,
+      "first_display_frame": 21,
+      "last_display_frame": 84
+    },
+    "oncoming_truck": {
+      "eligible_gt_frames": 73,
+      "raw_yolo_matched_frames": 36,
+      "raw_recall": 0.4931506849315068,
+      "mean_raw_confidence": 0.14167189574800432,
+      "median_raw_confidence": 0.03649120777845383,
+      "mean_raw_iou": 0.5640501821045838,
+      "mean_raw_center_ratio": 0.2579247523811161,
+      "raw_source_class_counts": {
+        "bus": 18,
+        "truck": 18
+      },
+      "combined_view_evidence_frames": 36,
+      "combined_source_class_counts": {
+        "bus": 17,
+        "truck": 19
+      },
+      "combined_source_view_counts": {
+        "original": 31,
+        "low_light_enhanced": 5
+      },
+      "stable_display_frames": 73,
+      "first_display_frame": 41,
+      "last_display_frame": 121
+    }
+  },
+  "stable_display_counts": {
+    "forward_motorcycle": 140,
+    "forward_car": 52,
+    "oncoming_bus": 54,
+    "oncoming_truck": 73
+  },
+  "two_or_more_displayed_frames": 116,
+  "review_frames": [
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_detected_review_001.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_detected_review_035.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_detected_review_070.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_detected_review_105.png",
+    "D:\\DMSc_Dissertation_Project\\datasets\\Simulation_Project\\CARLA\\outputs\\town10_night_actor_lights_final\\run_20260811_072445\\night_detected_review_140.png"
+  ],
+  "checks": {
+    "all_input_frames_processed": true,
+    "all_output_frames_written": true,
+    "raw_metrics_use_original_view_only": true,
+    "enhanced_view_excluded_from_raw_metrics": true,
+    "presentation_identified_as_gt_aided": true,
+    "stable_display_not_reported_as_raw_recall": true,
+    "controlled_targets_only": true,
+    "input_video_not_modified": true,
+    "forward_motorcycle_has_real_yolo_evidence": true,
+    "forward_motorcycle_display_ge_100": true,
+    "forward_car_has_real_yolo_evidence": true,
+    "forward_car_display_ge_35": true,
+    "oncoming_bus_has_real_yolo_evidence": true,
+    "oncoming_bus_display_ge_40": true,
+    "oncoming_truck_has_real_yolo_evidence": true,
+    "oncoming_truck_display_ge_55": true
+  },
+  "failure_reasons": []
+}
