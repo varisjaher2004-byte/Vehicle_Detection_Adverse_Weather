@@ -1,6 +1,11 @@
-ultralytics
-torch
-numpy
-pandas
-opencv-python
-matplotlib
+--extra-index-url https://download.pytorch.org/whl/cu126
+carla==0.9.16
+matplotlib==3.11.1
+numpy==2.5.1
+opencv-python==5.0.0
+pandas==3.0.5
+Pillow==12.3.0
+PyYAML==6.0.3
+torch==2.12.1+cu126
+torchvision==0.27.1+cu126
+ultralytics==8.4.104
