@@ -89,6 +89,7 @@ Vehicle_Detection_Adverse_Weather/
 |   `-- CARLA/
 |-- docs/
 |   |-- ENVIRONMENT.md
+|   |-- CARLA_REPRODUCIBILITY.md
 |   |-- EVIDENCE_INTEGRITY.md
 |   |-- EVIDENCE_MANIFEST.csv
 |   `-- NOTEBOOK_PROVENANCE.md
@@ -225,6 +226,8 @@ The principal approved scripts are:
 | Night diagnostic | `src/carla/NIGHT/step_93_1_detect_town10_night_ACTOR_LIGHTS_FINAL.py` |
 
 Several scripts depend on neighbouring helper scripts and local model/output paths. Review their command-line help and path arguments before execution. Running CARLA can be GPU-intensive; simulator stability depends on compatible graphics drivers and system resources.
+
+The locked route, environment variables, script-stage inventory, and interpretation boundaries are documented in [`docs/CARLA_REPRODUCIBILITY.md`](docs/CARLA_REPRODUCIBILITY.md).
 
 ## Results and artefacts
 

@@ -13,6 +13,7 @@ import yaml
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = REPOSITORY_ROOT / "docs" / "EVIDENCE_MANIFEST.csv"
 PRESETS_PATH = REPOSITORY_ROOT / "configs" / "TRAINING_PRESETS.json"
+CARLA_ROUTE_PATH = REPOSITORY_ROOT / "configs" / "CARLA" / "locked_town10_reference_route.json"
 
 CLASS_NAMES = [
     "person",
@@ -153,13 +154,48 @@ def verify_training_presets() -> None:
         print(f"PRESET PASS: {experiment_id}")
 
 
+def verify_carla_route() -> None:
+    with CARLA_ROUTE_PATH.open(encoding="utf-8") as handle:
+        route = json.load(handle)
+    assert route["status"] == "REFERENCE_ROUTE_LOCKED", "Unexpected CARLA route status"
+    assert route["map"] == "Carla/Maps/Town10HD_Opt", "Unexpected CARLA map"
+    assert route["path_base_env"] == "DMSC_GENERATED_DATASET_ROOT", "Missing portable CARLA path base"
+    assert route["dataset_root"] == ".", "Active CARLA dataset root must be relative"
+    assert all(not Path(item["folder"]).is_absolute() for item in route["weather_inventory"].values()), (
+        "Absolute weather folder in active CARLA route"
+    )
+    assert all(not Path(item).is_absolute() for item in route["clear_reference_images"]), (
+        "Absolute reference image in active CARLA route"
+    )
+
+    selected = route["selected"]
+    assert selected["spawn_index"] == 36, "Unexpected CARLA spawn index"
+    assert selected["road_id"] == 11, "Unexpected CARLA road ID"
+    assert selected["lane_id"] == 1, "Unexpected CARLA lane ID"
+    location = selected["transform"]["location"]
+    rotation = selected["transform"]["rotation"]
+    expected_location = {"x": 67.65974426269531, "y": 69.8227767944336, "z": 0.5999999642372131}
+    expected_rotation = {"pitch": 0.0, "yaw": 0.07327299565076828, "roll": 0.0}
+    for key, expected in expected_location.items():
+        assert math.isclose(float(location[key]), expected, rel_tol=0.0, abs_tol=1e-12), (
+            f"Unexpected CARLA location {key}"
+        )
+    for key, expected in expected_rotation.items():
+        assert math.isclose(float(rotation[key]), expected, rel_tol=0.0, abs_tol=1e-12), (
+            f"Unexpected CARLA rotation {key}"
+        )
+    print("CARLA ROUTE PASS: Town10HD_Opt spawn 36")
+
+
 def main() -> None:
     verify_configs()
     verify_manifest()
     verify_training_presets()
+    verify_carla_route()
     print(
         "REPOSITORY VERIFICATION PASS: "
-        f"{len(CONFIG_PATHS)} configs, {len(APPROVED_RESULTS)} experiments, {len(APPROVED_RESULTS)} presets"
+        f"{len(CONFIG_PATHS)} configs, {len(APPROVED_RESULTS)} experiments, "
+        f"{len(APPROVED_RESULTS)} presets, 1 CARLA route"
     )
 
 
