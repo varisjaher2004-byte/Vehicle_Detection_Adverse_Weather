@@ -1,0 +1,30 @@
+name: Repository integrity
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install verifier dependency
+        run: python -m pip install PyYAML==6.0.3
+
+      - name: Verify configs, evidence, presets, and CARLA route
+        run: python src/evaluation/verify_repository.py
+
+      - name: Compile Python source
+        run: python -m compileall -q src
