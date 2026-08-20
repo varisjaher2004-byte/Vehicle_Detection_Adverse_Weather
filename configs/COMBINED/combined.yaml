@@ -1,10 +1,7 @@
-path: D:/DMSc_Dissertation_Project/datasets/YOLO_COMBINED
-
+path: YOLO_COMBINED
 train: images/train
 val: images/val
-
 nc: 8
-
 names:
   0: person
   1: rider

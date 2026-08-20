@@ -1,10 +1,7 @@
-path: D:/DMSc_Dissertation_Project/datasets/ACDC/YOLO_NIGHT
-
+path: ACDC/YOLO_NIGHT
 train: images/train
 val: images/val
-
 nc: 8
-
 names:
   0: person
   1: rider
@@ -14,4 +11,3 @@ names:
   5: train
   6: motorcycle
   7: bicycle
-  

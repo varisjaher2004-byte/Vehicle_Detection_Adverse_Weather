@@ -1,0 +1,10 @@
+experiment_id,dataset,condition,source_csv,selection_rule,epoch_index,precision,recall,f1,map50,map50_95
+ACDC_ENTIRE,ACDC,Entire,results/ACDC/ENTIRE/results.csv,maximum metrics/mAP50(B),87,0.57840,0.42286,0.488548876,0.43160,0.25579
+ACDC_FOG,ACDC,Fog,results/ACDC/FOG/results.csv,maximum metrics/mAP50(B),49,0.64307,0.48221,0.551142444,0.53340,0.33612
+ACDC_NIGHT,ACDC,Night,results/ACDC/NIGHT/results.csv,maximum metrics/mAP50(B),82,0.66924,0.28566,0.400408626,0.30385,0.15061
+ACDC_RAIN,ACDC,Rain,results/ACDC/RAIN/results.csv,maximum metrics/mAP50(B),63,0.39659,0.28363,0.330730710,0.28395,0.15587
+ACDC_SNOW,ACDC,Snow,results/ACDC/SNOW/results.csv,maximum metrics/mAP50(B),57,0.52595,0.47173,0.497366678,0.48877,0.25762
+DAWN_ENTIRE,DAWN,Entire,results/DAWN/ENTIRE/results.csv,maximum metrics/mAP50(B),1,0.26502,0.09518,0.140058876,0.05321,0.02474
+DAWN_FOG,DAWN,Fog,results/DAWN/FOG/results.csv,maximum metrics/mAP50(B),2,0.02693,0.49836,0.051098764,0.09591,0.05620
+DAWN_RAIN,DAWN,Rain,results/DAWN/RAIN/results.csv,maximum metrics/mAP50(B),53,0.14141,0.13725,0.139298949,0.05990,0.04808
+COMBINED,Combined,Entire,results/COMBINED/results.csv,maximum metrics/mAP50(B),95,0.47068,0.34323,0.396976315,0.29278,0.15988

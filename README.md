@@ -134,6 +134,12 @@ The pinned environment uses Python 3.12.10, Ultralytics 8.4.104, PyTorch 2.12.1 
 
 The pip `carla` package is only the Python client API. The full CARLA 0.9.16 simulator application must be installed and started separately for simulation scripts.
 
+Configure Ultralytics to use the local parent dataset directory:
+
+```cmd
+yolo settings datasets_dir=D:/path/to/datasets
+```
+
 ## Dataset acquisition
 
 Raw datasets are intentionally excluded from Git because of size and third-party distribution conditions.
@@ -168,7 +174,7 @@ labels/train/
 labels/val/
 ```
 
-Before running an experiment, update the active YAML `path` under `configs/` to the corresponding local prepared dataset directory. YAML copies under `results/` are historical records and should not be edited merely to suit another machine.
+Active YAML files under `configs/` use roots relative to the Ultralytics `datasets_dir` setting. Configure that setting for the local machine rather than inserting a user-specific absolute path into every active YAML. YAML copies under `results/` are historical records and should not be edited merely to suit another machine.
 
 ## Running real-world experiments
 
@@ -178,7 +184,7 @@ Before executing a notebook:
 
 1. obtain the relevant dataset under its original licence;
 2. reproduce the expected image/label directory structure;
-3. update local dataset and output paths;
+3. configure the Ultralytics dataset root and any notebook-specific model/output paths;
 4. verify image-label stem matching and class IDs;
 5. confirm the selected YAML file and model checkpoint;
 6. execute cells in order in a compatible notebook environment.
@@ -216,6 +222,12 @@ The `results/` directory contains selected compact evidence, including:
 
 Raw datasets, model weights, videos, archives, caches, and failed or superseded runs are not included. Their absence is intentional and must not be mistaken for evidence that those artefacts were never used locally.
 
+The approved real-world summary is recorded in [`docs/EVIDENCE_MANIFEST.csv`](docs/EVIDENCE_MANIFEST.csv), and its selection and interpretation rules are documented in [`docs/EVIDENCE_INTEGRITY.md`](docs/EVIDENCE_INTEGRITY.md). Verify the portable configs and manifest directly from the committed sources with:
+
+```cmd
+python src\evaluation\verify_repository.py
+```
+
 ## Reproducibility limitations
 
 Exact numerical reproduction can be affected by:
@@ -238,4 +250,3 @@ No attempt is made to identify individuals or vehicles. Raw third-party driving 
 Third-party datasets and software retain their original licences. No separate licence for this repository's original source code is granted unless a `LICENSE` file is added. Contact the repository owner before reuse beyond inspection or academic assessment.
 
 When citing the datasets, use their original publications and provider guidance. When citing this repository, identify the repository version or commit hash used so that the referenced evidence can be traced.
-
