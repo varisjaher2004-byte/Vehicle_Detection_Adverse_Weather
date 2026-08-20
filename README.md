@@ -88,7 +88,10 @@ Vehicle_Detection_Adverse_Weather/
 |   |-- COMBINED/
 |   `-- CARLA/
 |-- docs/
-|   `-- ENVIRONMENT.md
+|   |-- ENVIRONMENT.md
+|   |-- EVIDENCE_INTEGRITY.md
+|   |-- EVIDENCE_MANIFEST.csv
+|   `-- NOTEBOOK_PROVENANCE.md
 |-- notebooks/
 |   |-- ACDC_ENTIRE.ipynb
 |   |-- ACDC_FOG.ipynb
@@ -110,8 +113,10 @@ Vehicle_Detection_Adverse_Weather/
 |   |   |-- RAIN/
 |   |   |-- FOG/
 |   |   `-- NIGHT/
-|   `-- evaluation/
-|       `-- utils/
+|   |-- evaluation/
+|   |   `-- utils/
+|   `-- training/
+|       `-- train_experiment.py
 |-- .gitignore
 |-- requirements.txt
 `-- README.md
@@ -191,6 +196,16 @@ Before executing a notebook:
 
 The notebooks retain research provenance, including some original Windows paths. They are not guaranteed to be turn-key on a different computer without path configuration. Do not interpret historical cell output as evidence that a newly edited cell has been rerun.
 
+For a portable training entry point, list and inspect the approved presets before starting a run:
+
+```cmd
+python src\training\train_experiment.py --list
+python src\training\train_experiment.py --experiment ACDC_FOG --dry-run
+python src\training\train_experiment.py --experiment ACDC_FOG
+```
+
+Preset provenance is recorded in `configs/TRAINING_PRESETS.json`. The archival notebook path audit and safe adaptation rules are documented in [`docs/NOTEBOOK_PROVENANCE.md`](docs/NOTEBOOK_PROVENANCE.md).
+
 ## Running CARLA scripts
 
 Start the CARLA 0.9.16 server before running client scripts. A resource-conservative Windows launch example is:
@@ -222,7 +237,7 @@ The `results/` directory contains selected compact evidence, including:
 
 Raw datasets, model weights, videos, archives, caches, and failed or superseded runs are not included. Their absence is intentional and must not be mistaken for evidence that those artefacts were never used locally.
 
-The approved real-world summary is recorded in [`docs/EVIDENCE_MANIFEST.csv`](docs/EVIDENCE_MANIFEST.csv), and its selection and interpretation rules are documented in [`docs/EVIDENCE_INTEGRITY.md`](docs/EVIDENCE_INTEGRITY.md). Verify the portable configs and manifest directly from the committed sources with:
+The approved real-world summary is recorded in [`docs/EVIDENCE_MANIFEST.csv`](docs/EVIDENCE_MANIFEST.csv), and its selection and interpretation rules are documented in [`docs/EVIDENCE_INTEGRITY.md`](docs/EVIDENCE_INTEGRITY.md). Legacy and independently maximised summaries are qualified in [`results/README.md`](results/README.md). Verify the portable configs, presets, and manifest directly from the committed sources with:
 
 ```cmd
 python src\evaluation\verify_repository.py

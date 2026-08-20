@@ -33,6 +33,16 @@ The `epoch_index` field in the manifest preserves the raw `epoch` value stored b
 
 The manifest does not claim that the omitted model weights can be reconstructed from metrics alone. It also does not independently prove the dataset split, annotation quality, or training seed.
 
+## Superseded and diagnostic summaries
+
+The canonical manifest takes precedence over older convenience summaries:
+
+- `results/ACDC/RAIN/training_summary.txt` reports values associated with raw epoch index 73, whereas `results.csv` reaches a higher mAP50 at raw epoch index 63. The text summary is retained as legacy provenance, not as the final same-checkpoint result.
+- `performance_summary.csv` files may contain the independent maximum of each metric column. For ACDC Entire, ACDC Night, ACDC Snow, and Combined, the maximum mAP50 and maximum mAP50-95 occur at different raw epoch indices.
+- independently maximised Precision, Recall, mAP50, or mAP50-95 values must not be combined into one synthetic checkpoint row.
+
+See `results/README.md` for the verified examples and interpretation guidance.
+
 ## Simulation boundary
 
 CARLA artefacts are retained separately because they are not an identical labelled validation benchmark to the real-world experiments. They must not be inserted into the real-world metric table as if they shared the same evaluation protocol.
@@ -52,4 +62,4 @@ From the repository root, run:
 python src\evaluation\verify_repository.py
 ```
 
-The verifier checks the nine active dataset configurations, the approved manifest membership, the maximum-mAP50 selection rule, same-row metrics, and the F1 calculation. It does not require the excluded raw datasets or model weights.
+The verifier checks the nine active dataset configurations, approved training presets, manifest membership, maximum-mAP50 selection rule, same-row metrics, and F1 calculation. It does not require the excluded raw datasets or model weights.

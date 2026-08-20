@@ -1,0 +1,34 @@
+# Results Evidence Guide
+
+The files below this directory are retained compact artefacts from completed experiments. The canonical real-world reporting route is:
+
+1. the relevant committed `results.csv`;
+2. the row with maximum `metrics/mAP50(B)`;
+3. Precision, Recall, mAP50, and mAP50-95 from that same row;
+4. F1 derived from the same row's Precision and Recall;
+5. the verified summary in `docs/EVIDENCE_MANIFEST.csv`.
+
+Run `python src/evaluation/verify_repository.py` from the repository root to verify this chain.
+
+## Legacy and diagnostic summaries
+
+Some older summary artefacts were created for exploratory analysis and must not override the canonical manifest.
+
+- `ACDC/RAIN/training_summary.txt` describes the mAP values around raw epoch index 73, but `results.csv` reaches a higher mAP50 at raw epoch index 63. Its Precision/Recall lines also do not define the canonical same-row result. Treat this file as a legacy summary.
+- Several `performance_summary.csv` files contain the independent maximum of each metric column. Independent maxima can come from different epochs and must not be combined into a same-checkpoint result.
+- Training-information text files document run provenance but are not a substitute for row-level metric verification.
+
+Examples of independent maxima occurring at different raw epoch indices are:
+
+| Experiment | Maximum-mAP50 epoch index | Same-row mAP50-95 | Independent maximum mAP50-95 epoch index | Independent maximum mAP50-95 |
+|---|---:|---:|---:|---:|
+| ACDC Entire | 87 | 0.25579 | 97 | 0.26138 |
+| ACDC Night | 82 | 0.15061 | 89 | 0.15885 |
+| ACDC Snow | 57 | 0.25762 | 44 | 0.27001 |
+| Combined | 95 | 0.15988 | 79 | 0.17115 |
+
+These files remain in Git to preserve provenance. Their continued presence is not permission to mix independently maximised metrics in dissertation tables.
+
+## CARLA boundary
+
+CARLA files are separate controlled-simulation artefacts. They do not share an identical labelled evaluation protocol with the real-world training CSVs. Stable, ground-truth-aided, or actor-association outputs must not be represented as standard Ultralytics validation metrics unless the corresponding file explicitly establishes that protocol.

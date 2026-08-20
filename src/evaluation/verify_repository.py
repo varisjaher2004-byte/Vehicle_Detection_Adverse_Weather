@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import math
 from pathlib import Path
 
@@ -11,6 +12,7 @@ import yaml
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = REPOSITORY_ROOT / "docs" / "EVIDENCE_MANIFEST.csv"
+PRESETS_PATH = REPOSITORY_ROOT / "configs" / "TRAINING_PRESETS.json"
 
 CLASS_NAMES = [
     "person",
@@ -130,10 +132,35 @@ def verify_manifest() -> None:
         print(f"EVIDENCE PASS: {manifest_row['experiment_id']}")
 
 
+def verify_training_presets() -> None:
+    with PRESETS_PATH.open(encoding="utf-8") as handle:
+        document = json.load(handle)
+    presets = document["experiments"]
+    expected_ids = {path.split("/")[1] + "_" + path.split("/")[2] for path in APPROVED_RESULTS}
+    expected_ids.discard("COMBINED_results.csv")
+    expected_ids.add("COMBINED")
+    assert set(presets) == expected_ids, "Training preset membership differs from approved experiments"
+
+    for experiment_id, preset in presets.items():
+        data_path = REPOSITORY_ROOT / preset["data"]
+        source_path = REPOSITORY_ROOT / preset["parameter_source"]
+        assert data_path.is_file(), f"Missing preset data config for {experiment_id}"
+        assert source_path.is_file(), f"Missing parameter source for {experiment_id}"
+        assert preset["model"] == "yolov8l.pt", f"Unexpected model for {experiment_id}"
+        assert int(preset["epochs"]) == 100, f"Unexpected epochs for {experiment_id}"
+        assert int(preset["imgsz"]) == 640, f"Unexpected image size for {experiment_id}"
+        assert int(preset["batch"]) > 0, f"Invalid batch size for {experiment_id}"
+        print(f"PRESET PASS: {experiment_id}")
+
+
 def main() -> None:
     verify_configs()
     verify_manifest()
-    print(f"REPOSITORY VERIFICATION PASS: {len(CONFIG_PATHS)} configs, {len(APPROVED_RESULTS)} experiments")
+    verify_training_presets()
+    print(
+        "REPOSITORY VERIFICATION PASS: "
+        f"{len(CONFIG_PATHS)} configs, {len(APPROVED_RESULTS)} experiments, {len(APPROVED_RESULTS)} presets"
+    )
 
 
 if __name__ == "__main__":

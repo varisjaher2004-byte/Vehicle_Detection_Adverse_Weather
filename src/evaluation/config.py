@@ -1,7 +1,11 @@
+"""Canonical path and evaluation configuration."""
+
 import os
 from pathlib import Path
 
-PROJECT_ROOT = Path(os.environ.get("DMSC_PROJECT_ROOT", ".")).resolve()
+
+REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(os.environ.get("DMSC_PROJECT_ROOT", REPOSITORY_ROOT)).resolve()
 
 MODELS = {
     "DAWN": PROJECT_ROOT / "models" / "dawn_entire_best.pt",
@@ -20,7 +24,6 @@ WEATHER_FOLDERS = [
 ]
 
 RESULTS_FOLDER = PROJECT_ROOT / "results"
-
 CSV_FOLDER = RESULTS_FOLDER / "csv"
 GRAPH_FOLDER = RESULTS_FOLDER / "graphs"
 COMPARISON_FOLDER = RESULTS_FOLDER / "comparison"
