@@ -2,7 +2,7 @@
 
 This repository contains the source code, experiment notebooks, configuration files, and selected evidence produced for an MSc Artificial Intelligence research project at Sheffield Hallam University.
 
-The project evaluates the robustness and cross-domain generalisation of an Ultralytics YOLO detector under adverse environmental conditions. It combines real-world experiments using ACDC and DAWN with controlled CARLA simulation evidence for clear, rain, fog, and night-looking scenes.
+The project evaluates domain-dependent performance variation of an Ultralytics YOLO detector across separately retained ACDC, DAWN, and Combined adverse-condition configurations. It combines real-world experiments with controlled CARLA simulation evidence for clear, rain, fog, and night-looking scenes. It does not claim direct cross-domain transfer because a train-on-one-dataset/test-on-another-dataset experiment was not conducted.
 
 ## Research scope
 
@@ -10,7 +10,7 @@ The investigation addresses three related questions:
 
 - how detection performance changes across adverse environmental conditions;
 - how strongly performance depends on the source dataset and its annotation domain;
-- whether combining datasets automatically improves cross-domain robustness.
+- whether the Combined configuration improves the retained detection results relative to the separately evaluated dataset configurations.
 
 YOLO is the implemented detector in this repository. Faster R-CNN and other architectures are discussed only as literature context in the associated dissertation; they were not implemented as experimental baselines here.
 
@@ -73,7 +73,7 @@ The retained results support the following cautious conclusions:
 - ACDC produced the strongest overall real-world performance in this investigation;
 - DAWN performance was substantially weaker and more variable;
 - the Combined experiment was intermediate rather than consistently superior;
-- increasing dataset volume did not automatically improve generalisation;
+- increasing dataset volume did not automatically improve retained detection performance;
 - robustness was domain-dependent and sensitive to weather, annotation quality, class balance, and dataset composition.
 
 These are within-study findings. They are not claims that one dataset or detector is universally superior.
