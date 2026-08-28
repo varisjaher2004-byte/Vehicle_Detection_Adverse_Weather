@@ -1,0 +1,13 @@
+{
+  "source_files_modified": false,
+  "mapping": {"1": 0, "2": 7, "3": 2, "4": 6, "6": 4, "8": 3},
+  "unified_names": {"0": "person", "1": "rider", "2": "car", "3": "truck", "4": "bus", "5": "train", "6": "motorcycle", "7": "bicycle"},
+  "dawn_train": {"images": 422, "instances": 2829},
+  "dawn_validation": {"images": 120, "instances": 1029},
+  "condition_validation_images": {"fog": 78, "rain": 42},
+  "raw_validation_class_instances": {"1": 18, "2": 6, "3": 849, "4": 4, "6": 28, "8": 124},
+  "corrected_validation_class_instances": {"0": 18, "2": 849, "3": 124, "4": 28, "6": 4, "7": 6},
+  "fog_xml_files_verified": 78,
+  "fog_objects_verified": 710,
+  "condition_splits_disjoint_and_complete": true
+}

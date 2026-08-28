@@ -1,14 +1,28 @@
 # Results Evidence Guide
 
-The files below this directory are retained compact artefacts from completed experiments. The canonical real-world reporting route is:
+## Dissertation-facing result set
+
+The final quantitative evidence is `CORRECTED_2026-08-27/`. It was produced
+after a non-destructive audit found that archived DAWN validation labels retained
+older numeric class IDs. Use the corrected training CSV and the final seven-cell
+cross-domain matrix for dissertation claims. The remap and verification boundary
+are documented in `docs/LABEL_INTEGRITY_CORRECTION_2026-08-27.md`.
+
+The older DAWN and Combined outputs in this directory are preserved as historical
+provenance. They must not be reported as final performance and must not be used to
+support the superseded claims that DAWN was substantially weaker, Combined was
+merely intermediate, or additional heterogeneous data failed to aid
+generalisation.
+
+The original files below this directory remain compact artefacts from completed experiments. Their historical same-checkpoint verification route is:
 
 1. the relevant committed `results.csv`;
 2. the row with maximum `metrics/mAP50(B)`;
 3. Precision, Recall, mAP50, and mAP50-95 from that same row;
 4. F1 derived from the same row's Precision and Recall;
-5. the verified summary in `docs/EVIDENCE_MANIFEST.csv`.
+5. the historical summary in `docs/EVIDENCE_MANIFEST.csv`.
 
-Run `python src/evaluation/verify_repository.py` from the repository root to verify this chain.
+Run `python src/evaluation/verify_repository.py` from the repository root to verify both this provenance chain and the corrected final evidence.
 
 ## Legacy and diagnostic summaries
 

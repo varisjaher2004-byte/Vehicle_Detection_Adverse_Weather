@@ -1,0 +1,33 @@
+{
+  "completed": "2026-08-27",
+  "status": "PASS",
+  "protocol": {
+    "model_family": "YOLOv8l",
+    "training_epochs": 100,
+    "imgsz": 640,
+    "seed": 0,
+    "deterministic": true,
+    "validation_batch": 4,
+    "split": "val",
+    "selection_rule": "corrected models selected by maximum validation mAP50; final matrix uses locked best.pt checkpoints",
+    "f1_rule": "2 * precision * recall / (precision + recall) from the same result"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "ultralytics": "8.4.104",
+    "torch": "2.12.1+cu126",
+    "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU"
+  },
+  "datasets": {
+    "ACDC": {"validation_images": 406, "validation_instances": 2731},
+    "DAWN": {"validation_images": 120, "validation_instances": 1029},
+    "ACDC_DAWN_UNION": {"validation_images": 526, "validation_instances": 3760}
+  },
+  "checkpoint_sha256": {
+    "ACDC": "346ea3443fe23f0c164dc79de96b53d73085ae5cacac10fd4d3477d4f429162b",
+    "DAWN": "b82b4f5fa0550ac3376a30909f6f7707069596c36da613cbbeb39e7f3880a903",
+    "COMBINED": "e539bd2515215ef27ac5d077506a9bb6d6474b2d626eb2cdf2501aa7643b84cc"
+  },
+  "integrity_note": "DAWN uses a non-destructive audited corrected label copy. Original archived labels and earlier diagnostic outputs were not modified. These are validation splits, not a newly claimed untouched test set."
+}
+

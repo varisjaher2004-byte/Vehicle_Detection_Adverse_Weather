@@ -2,7 +2,7 @@
 
 This repository contains the source code, experiment notebooks, configuration files, and selected evidence produced for an MSc Artificial Intelligence research project at Sheffield Hallam University.
 
-The project evaluates domain-dependent performance variation of an Ultralytics YOLO detector across separately retained ACDC, DAWN, and Combined adverse-condition configurations. It combines real-world experiments with controlled CARLA simulation evidence for clear, rain, fog, and night-looking scenes. It does not claim direct cross-domain transfer because a train-on-one-dataset/test-on-another-dataset experiment was not conducted.
+The project evaluates domain-dependent performance variation of an Ultralytics YOLO detector across ACDC, DAWN, and Combined adverse-condition configurations. It combines real-world experiments with controlled CARLA simulation evidence for clear, rain, fog, and night-looking scenes. A final integrity-controlled experiment directly evaluates ACDC-to-DAWN and DAWN-to-ACDC transfer and the balance provided by joint ACDC+DAWN training.
 
 ## Research scope
 
@@ -10,7 +10,7 @@ The investigation addresses three related questions:
 
 - how detection performance changes across adverse environmental conditions;
 - how strongly performance depends on the source dataset and its annotation domain;
-- whether the Combined configuration improves the retained detection results relative to the separately evaluated dataset configurations.
+- whether direct transfer holds between the two dataset domains and whether the Combined configuration improves cross-dataset balance.
 
 YOLO is the implemented detector in this repository. Faster R-CNN and other architectures are discussed only as literature context in the associated dissertation; they were not implemented as experimental baselines here.
 
@@ -64,17 +64,20 @@ The repository follows these reporting rules:
 - CARLA visual evidence is not treated as an identical quantitative benchmark to labelled real-world validation data;
 - ground-truth-aided or stable presentation outputs are not described as raw YOLO recall or detection performance;
 - the relaxed night actor-association diagnostic is not presented as a standard Ultralytics Precision/Recall/F1 evaluation;
-- historical result files under `results/` are retained as provenance and should not be silently altered.
+- the archived DAWN validation-label inconsistency is corrected only in a new, non-destructive data view;
+- earlier DAWN and Combined metrics derived from the inconsistent labels are historical/diagnostic only;
+- the final corrected metrics and checkpoint hashes are preserved under `results/CORRECTED_2026-08-27/`;
+- historical result files under `results/` remain as provenance and are not silently altered.
 
 ## Main findings represented by the evidence
 
-The retained results support the following cautious conclusions:
+The corrected results support the following cautious conclusions:
 
-- ACDC produced the strongest overall real-world performance in this investigation;
-- DAWN performance was substantially weaker and more variable;
-- the Combined experiment was intermediate rather than consistently superior;
-- increasing dataset volume did not automatically improve retained detection performance;
-- robustness was domain-dependent and sensitive to weather, annotation quality, class balance, and dataset composition.
+- direct single-domain transfer was weak: ACDC-to-DAWN mAP50 was 0.1362 and DAWN-to-ACDC was 0.1122, compared with within-domain controls of 0.4221 and 0.6277;
+- joint ACDC+DAWN training gave the best balance across the two domains, retaining ACDC mAP50 0.4069 and reaching DAWN mAP50 0.6382;
+- the Combined model was not uniformly superior on every metric, so the claim is improved balance rather than universal dominance;
+- DAWN Rain reached mAP50 0.9916 on a small 42-image in-domain validation split and is not evidence of universal rain robustness;
+- robustness remained domain-dependent and sensitive to labels, class balance, source composition and evaluation protocol.
 
 These are within-study findings. They are not claims that one dataset or detector is universally superior.
 
@@ -90,8 +93,10 @@ Vehicle_Detection_Adverse_Weather/
 |-- docs/
 |   |-- ENVIRONMENT.md
 |   |-- CARLA_REPRODUCIBILITY.md
+|   |-- LABEL_INTEGRITY_CORRECTION_2026-08-27.md
 |   |-- EVIDENCE_INTEGRITY.md
 |   |-- EVIDENCE_MANIFEST.csv
+|   |-- CORRECTED_EVIDENCE_MANIFEST.csv
 |   `-- NOTEBOOK_PROVENANCE.md
 |-- notebooks/
 |   |-- ACDC_ENTIRE.ipynb
@@ -107,6 +112,7 @@ Vehicle_Detection_Adverse_Weather/
 |   |-- ACDC/
 |   |-- DAWN/
 |   |-- COMBINED/
+|   |-- CORRECTED_2026-08-27/
 |   `-- CARLA/
 |-- src/
 |   |-- carla/
@@ -115,9 +121,13 @@ Vehicle_Detection_Adverse_Weather/
 |   |   |-- FOG/
 |   |   `-- NIGHT/
 |   |-- evaluation/
+|   |   |-- prepare_corrected_dawn_labels.py
+|   |   |-- run_cross_domain_validation.py
+|   |   |-- verify_corrected_evidence.py
 |   |   `-- utils/
 |   `-- training/
-|       `-- train_experiment.py
+|       |-- train_experiment.py
+|       `-- run_corrected_training.py
 |-- .gitignore
 |-- requirements.txt
 `-- README.md
@@ -184,7 +194,7 @@ Active YAML files under `configs/` use roots relative to the Ultralytics `datase
 
 ## Running real-world experiments
 
-The notebooks contain dataset conversion, integrity checking, training, validation, and result-processing cells from the completed investigation.
+The notebooks contain dataset conversion, integrity checking, training, validation, and result-processing cells from the original investigation. Their embedded outputs preserve historical provenance; they are not the final source for corrected DAWN/Combined claims.
 
 Before executing a notebook:
 
@@ -206,6 +216,26 @@ python src\training\train_experiment.py --experiment ACDC_FOG
 ```
 
 Preset provenance is recorded in `configs/TRAINING_PRESETS.json`. The archival notebook path audit and safe adaptation rules are documented in [`docs/NOTEBOOK_PROVENANCE.md`](docs/NOTEBOOK_PROVENANCE.md).
+
+### Corrected DAWN and cross-domain protocol
+
+The label-integrity finding, remap, counts and evidential consequence are documented in [`docs/LABEL_INTEGRITY_CORRECTION_2026-08-27.md`](docs/LABEL_INTEGRITY_CORRECTION_2026-08-27.md). Build a separate corrected DAWN data view without editing the source data:
+
+```cmd
+python src\evaluation\prepare_corrected_dawn_labels.py --dawn-entire-root D:\path\to\DAWN_ENTIRE --dawn-fog-root D:\path\to\YOLO_FOG --dawn-rain-root D:\path\to\YOLO_RAIN --output-root D:\path\to\corrected_DAWN
+```
+
+Inspect the locked corrected training plan before running it:
+
+```cmd
+python src\training\run_corrected_training.py --prepared-dawn-root D:\path\to\corrected_DAWN --acdc-root D:\path\to\ACDC_ENTIRE --model D:\path\to\yolov8l.pt --output-root D:\path\to\corrected_runs --dry-run
+```
+
+The final seven-cell validation runner accepts the three locked checkpoints and writes a new matrix without changing archived evidence:
+
+```cmd
+python src\evaluation\run_cross_domain_validation.py --acdc-checkpoint D:\path\to\acdc_best.pt --dawn-checkpoint D:\path\to\dawn_best.pt --combined-checkpoint D:\path\to\combined_best.pt --acdc-root D:\path\to\ACDC_ENTIRE --prepared-dawn-root D:\path\to\corrected_DAWN --output-root D:\path\to\final_matrix --dry-run
+```
 
 ## Running CARLA scripts
 
@@ -231,7 +261,7 @@ The locked route, environment variables, script-stage inventory, and interpretat
 
 ## Results and artefacts
 
-The `results/` directory contains selected compact evidence, including:
+The dissertation-facing quantitative evidence is under `results/CORRECTED_2026-08-27/`. It contains the four corrected training outcomes, the final seven-cell validation matrix, sanitised label-remap counts, protocol metadata and checkpoint hashes. The broader `results/` directory also contains selected compact historical evidence, including:
 
 - training histories and validation summaries;
 - performance curves and confusion matrices;
@@ -240,7 +270,7 @@ The `results/` directory contains selected compact evidence, including:
 
 Raw datasets, model weights, videos, archives, caches, and failed or superseded runs are not included. Their absence is intentional and must not be mistaken for evidence that those artefacts were never used locally.
 
-The approved real-world summary is recorded in [`docs/EVIDENCE_MANIFEST.csv`](docs/EVIDENCE_MANIFEST.csv), and its selection and interpretation rules are documented in [`docs/EVIDENCE_INTEGRITY.md`](docs/EVIDENCE_INTEGRITY.md). Legacy and independently maximised summaries are qualified in [`results/README.md`](results/README.md). Verify the portable configs, presets, and manifest directly from the committed sources with:
+The final real-world summary is recorded in [`docs/CORRECTED_EVIDENCE_MANIFEST.csv`](docs/CORRECTED_EVIDENCE_MANIFEST.csv). The older [`docs/EVIDENCE_MANIFEST.csv`](docs/EVIDENCE_MANIFEST.csv) remains only to verify the original same-row provenance and must not override corrected DAWN/Combined evidence. Selection and interpretation rules are documented in [`docs/EVIDENCE_INTEGRITY.md`](docs/EVIDENCE_INTEGRITY.md), and the result boundary is qualified in [`results/README.md`](results/README.md). Verify both historical provenance and final corrected evidence with:
 
 ```cmd
 python src\evaluation\verify_repository.py

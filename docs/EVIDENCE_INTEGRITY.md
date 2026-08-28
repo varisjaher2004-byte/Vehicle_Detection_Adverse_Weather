@@ -1,16 +1,35 @@
 # Evidence Integrity and Metric Selection
 
+## Final dissertation-facing evidence
+
+The final quantitative result set is under `results/CORRECTED_2026-08-27/` and
+is indexed by `docs/CORRECTED_EVIDENCE_MANIFEST.csv`. It contains four corrected
+training outcomes and a seven-cell protocol-matched validation matrix. Each row
+uses Precision and Recall from one Ultralytics validation result and derives F1
+only from that pair. Checkpoint SHA-256 hashes preserve model identity.
+
+The DAWN correction was non-destructive. Archived validation labels retained old
+numeric IDs, including class 8, which caused 46 of 120 images to be excluded by
+the eight-class YAML and caused other IDs to be interpreted under incorrect class
+names. The audited mapping and split counts are documented in
+`LABEL_INTEGRITY_CORRECTION_2026-08-27.md`.
+
+Final findings are limited to validation splits. The cross-domain matrix directly
+tests transfer, but it is not relabelled as an untouched test set. DAWN Rain's
+near-saturated in-domain value uses only 42 validation images and is not evidence
+of universal rain robustness.
+
 This document defines how the compact real-world evidence manifest is derived and how the simulation artefacts may be interpreted.
 
-## Approved real-world result set
+## Historical real-world result set
 
-The dissertation-facing real-world result set contains nine completed experiments:
+The original manifest contains nine completed experiments:
 
 - ACDC Entire, Fog, Night, Rain, and Snow;
 - DAWN Entire, Fog, and Rain;
 - Combined Entire.
 
-Runs affected by missing labels, incorrect paths, incomplete execution, or diagnostic-only objectives are excluded.
+Runs affected by missing labels, incorrect paths, incomplete execution, or diagnostic-only objectives were excluded at that stage. After the DAWN validation-ID issue was discovered, the original DAWN and Combined metrics were superseded for dissertation reporting while remaining available for provenance.
 
 ## Selection rule
 
@@ -35,7 +54,7 @@ The manifest does not claim that the omitted model weights can be reconstructed 
 
 ## Superseded and diagnostic summaries
 
-The canonical manifest takes precedence over older convenience summaries:
+Within the historical evidence layer, the original manifest takes precedence over older convenience summaries:
 
 - `results/ACDC/RAIN/training_summary.txt` reports values associated with raw epoch index 73, whereas `results.csv` reaches a higher mAP50 at raw epoch index 63. The text summary is retained as legacy provenance, not as the final same-checkpoint result.
 - `performance_summary.csv` files may contain the independent maximum of each metric column. For ACDC Entire, ACDC Night, ACDC Snow, and Combined, the maximum mAP50 and maximum mAP50-95 occur at different raw epoch indices.
@@ -62,4 +81,4 @@ From the repository root, run:
 python src\evaluation\verify_repository.py
 ```
 
-The verifier checks the nine active dataset configurations, approved training presets, manifest membership, maximum-mAP50 selection rule, same-row metrics, and F1 calculation. It does not require the excluded raw datasets or model weights.
+The verifier checks the nine active historical configurations, presets and source CSV rows, then independently checks the corrected four-run summary, seven-cell matrix, same-row F1 calculations, checkpoint-hash lineage and label-remap audit. It does not require excluded raw datasets or model weights.

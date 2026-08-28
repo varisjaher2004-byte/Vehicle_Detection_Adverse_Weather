@@ -9,6 +9,11 @@ from pathlib import Path
 
 import yaml
 
+try:
+    from .verify_corrected_evidence import main as verify_corrected_evidence
+except ImportError:  # Direct script execution from the repository root.
+    from verify_corrected_evidence import main as verify_corrected_evidence
+
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = REPOSITORY_ROOT / "docs" / "EVIDENCE_MANIFEST.csv"
@@ -192,10 +197,11 @@ def main() -> None:
     verify_manifest()
     verify_training_presets()
     verify_carla_route()
+    verify_corrected_evidence()
     print(
         "REPOSITORY VERIFICATION PASS: "
         f"{len(CONFIG_PATHS)} configs, {len(APPROVED_RESULTS)} experiments, "
-        f"{len(APPROVED_RESULTS)} presets, 1 CARLA route"
+        f"{len(APPROVED_RESULTS)} presets, 1 CARLA route, 1 corrected evidence set"
     )
 
 
