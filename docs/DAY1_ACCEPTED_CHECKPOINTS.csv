@@ -1,0 +1,6 @@
+model_role,clean_filename,sha256,evidence_use,git_storage_policy
+ACDC Entire,ACDC_ENTIRE_best.pt,346ea3443fe23f0c164dc79de96b53d73085ae5cacac10fd4d3477d4f429162b,seven-cell matrix and within-domain control,binary excluded; hash retained
+Corrected DAWN Fog,DAWN_FOG_CORRECTED_best.pt,c523cc15f7abc5b2aed1722d1f2ba2744ab3b6c0232a27db346209f777517392,corrected condition-training validation,binary excluded; hash retained
+Corrected DAWN Rain,DAWN_RAIN_CORRECTED_best.pt,66307bc4bc1a711158d6dc138f2268fec04b6aaf266fbcf1a4bc994e61d1b324,corrected condition-training validation,binary excluded; hash retained
+Corrected DAWN Entire,DAWN_ENTIRE_CORRECTED_best.pt,b82b4f5fa0550ac3376a30909f6f7707069596c36da613cbbeb39e7f3880a903,seven-cell matrix and within-domain control,binary excluded; hash retained
+Corrected Combined,COMBINED_CORRECTED_best.pt,e539bd2515215ef27ac5d077506a9bb6d6474b2d626eb2cdf2501aa7643b84cc,seven-cell matrix and union validation,binary excluded; hash retained

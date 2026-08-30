@@ -1,0 +1,7 @@
+evidence_group,file_name,sha256,role,matrix_relationship
+ACDC Fog historical validation,val_batch0_labels.jpg,19e0afdc14b9d0c3499a58553bf53ef852cb8821c9ad7bd345a48558bf06c8a0,ground-truth batch,not matched to seven-cell matrix
+ACDC Fog historical validation,val_batch0_pred.jpg,7dff6ef8f6c7ddf85a11fb28cc0d4cfd973d254daead378a0b1da8e5b46eab20,prediction batch,not matched to seven-cell matrix
+ACDC Fog historical validation,val_batch1_labels.jpg,8f792392ebd976c6a7217e011168ad6de568050588d59f04da827f1ef7093a97,ground-truth batch,not matched to seven-cell matrix
+ACDC Fog historical validation,val_batch1_pred.jpg,b1f8565d725ca05db5f09e3dd43109946badca086837f755e3cce1a9b94759cc,prediction batch,not matched to seven-cell matrix
+ACDC Fog historical validation,val_batch2_labels.jpg,ae7dfeccdbab481a8e95bd5e409e27c362fe6c9c9bfa07a9052200a89c1d5e7f,ground-truth batch,not matched to seven-cell matrix
+ACDC Fog historical validation,val_batch2_pred.jpg,ae5718aa652eb84a19e717d09b92c240c97147710162b7c9fca3b3c36ca18278,prediction batch,not matched to seven-cell matrix

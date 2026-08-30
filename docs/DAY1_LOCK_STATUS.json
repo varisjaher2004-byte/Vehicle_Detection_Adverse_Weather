@@ -1,0 +1,19 @@
+{
+  "status": "PASS_DAY1_EVIDENCE_LOCK",
+  "audit_date": "2026-08-30",
+  "base_commit": "1eb81b595c6b7f8b38851eab5ca1978a5d12c8a5",
+  "accepted_checkpoint_count": 5,
+  "corrected_training_rows_verified": 4,
+  "cross_domain_matrix_rows_verified": 7,
+  "same_row_f1_checks_passed": 11,
+  "corrected_checkpoint_hashes_matched": 4,
+  "acdc_checkpoint_hash_matched": true,
+  "checkpoint_binaries_committed_to_git": false,
+  "raw_datasets_committed_to_git": false,
+  "source_files_modified_by_audit": false,
+  "submission_ready_modified_by_audit": false,
+  "metrics_are_validation_bound": true,
+  "single_seed_descriptive_non_causal": true,
+  "carla_excluded_from_real_world_matrix": true,
+  "administrative_evidence_complete": false
+}
