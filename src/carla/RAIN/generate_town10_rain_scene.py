@@ -21,7 +21,7 @@ import numpy as np
 
 
 # ============================================================================
-# STEP 80 - TOWN10 RAIN SIGNAL CONTINUATION
+# TOWN10 RAIN SCENE GENERATION
 #
 # One file, controlled phases:
 #   preflight -> capture -> detect -> validate -> combine -> status
@@ -2154,7 +2154,7 @@ def run_preflight(
     )
 
     print("=" * 94)
-    print("STEP 80 V8 - PEDESTRIANS EXIT FRAME | BUILD 20260807-E")
+    print("TOWN10 RAIN SCENE - PEDESTRIANS EXIT FRAME | BUILD 20260807-E")
     print("=" * 94)
     print(f"Route JSON: {route_path}")
     print(f"Route rank: {args.route_rank}")
@@ -2186,7 +2186,7 @@ def run_preflight(
             encoding="utf-8",
         )
         summary = [
-            "STEP 80 - PREFLIGHT",
+            "TOWN10 RAIN SCENE - PREFLIGHT",
             "=" * 82,
             "Status: PREFLIGHT_PASS",
             f"Map: {plan.map_name}",
@@ -2996,7 +2996,7 @@ def run_capture(
     ] = queue.Queue(maxsize=8)
 
     print("=" * 94)
-    print("STEP 80 - CONTROLLED RAIN CAPTURE")
+    print("TOWN10 CONTROLLED RAIN CAPTURE")
     print("=" * 94)
     print(f"Map: {world.get_map().name}")
     print(
@@ -3836,7 +3836,7 @@ def run_capture(
             encoding="utf-8",
         )
         summary = [
-            "STEP 80 - CONTROLLED RAIN CAPTURE",
+            "TOWN10 CONTROLLED RAIN CAPTURE",
             "=" * 82,
             f"Status: {capture_status}",
             f"Frames: {recorded}",
@@ -4660,7 +4660,7 @@ def run_detect(
     frame_number = 0
 
     print("=" * 94)
-    print("STEP 80 - STRICT OFFLINE DETECTION")
+    print("TOWN10 RAIN - STRICT OFFLINE DETECTION")
     print("=" * 94)
     print(f"Input: {raw_path}")
     print(f"Model: {model_path}")
@@ -4927,7 +4927,7 @@ def run_detect(
         encoding="utf-8",
     )
     summary = [
-        "STEP 80 - STRICT OFFLINE DETECTION",
+        "TOWN10 RAIN - STRICT OFFLINE DETECTION",
         "=" * 82,
         f"Status: {status}",
         f"Display frames: {display_frames}",
@@ -5105,7 +5105,7 @@ def run_validate(
         encoding="utf-8",
     )
     summary = [
-        "STEP 80 - TOWN10 RAIN SIGNAL CONTINUATION",
+        "TOWN10 RAIN SCENE GENERATION",
         "=" * 82,
         f"Final status: {status}",
         (
@@ -5572,7 +5572,7 @@ def main() -> None:
         sys.exit(130)
     except Exception as error:
         print("=" * 94)
-        print("STEP 80 FAILED SAFELY")
+        print("TOWN10 RAIN SCENE FAILED SAFELY")
         print(
             f"{type(error).__name__}: {error}"
         )
@@ -5586,4 +5586,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

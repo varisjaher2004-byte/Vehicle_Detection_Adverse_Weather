@@ -628,7 +628,7 @@ def main() -> None:
     ] = queue.Queue(maxsize=8)
 
     print("=" * 92)
-    print("STEP 68 V3 - TOWN10 FINAL RAW DEMO")
+    print("TOWN10 CLEAR RAW SCENE")
     print("=" * 92)
     print(f"Map:          {active_map}")
     print(f"Route JSON:   {route_json}")
@@ -1183,7 +1183,7 @@ def main() -> None:
         )
 
         summary_lines = [
-            "STEP 68 V2 - TOWN10 FINAL RAW DEMO",
+            "TOWN10 CLEAR RAW SCENE",
             "=" * 76,
             f"Status: {status}",
             f"Map: {active_map}",
@@ -1290,4 +1290,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

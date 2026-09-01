@@ -17,7 +17,7 @@ import numpy as np
 
 
 # =============================================================================
-# STEP 90 - TOWN10 DENSE FOG MULTI-VEHICLE RAW CAPTURE
+# TOWN10 DENSE-FOG MULTI-VEHICLE SCENE GENERATION
 #
 # FINAL LOCKED SCENE
 # ------------------
@@ -1502,7 +1502,7 @@ def main() -> None:
 
     print("=" * 100)
     print(
-        "STEP 90 - TOWN10 DENSE FOG MULTI-VEHICLE CAPTURE"
+        "TOWN10 DENSE-FOG MULTI-VEHICLE CAPTURE"
     )
     print("=" * 100)
     print(
@@ -2530,7 +2530,7 @@ def main() -> None:
         )
 
         summary_lines = [
-            "STEP 90 - TOWN10 DENSE FOG MULTI-VEHICLE CAPTURE",
+            "TOWN10 DENSE-FOG MULTI-VEHICLE CAPTURE",
             "=" * 84,
             f"Status: {status}",
             f"Map: {active_map}",
@@ -2679,4 +2679,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

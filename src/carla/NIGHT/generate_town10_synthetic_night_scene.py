@@ -20,11 +20,11 @@ import sys
 FOG_DIR = Path(__file__).resolve().parents[1] / "FOG"
 if str(FOG_DIR) not in sys.path:
     sys.path.insert(0, str(FOG_DIR))
-import step_90_generate_town10_fog_multivehicle as fogbase
+import generate_town10_fog_scene as fogbase
 
 
 # ======================================================================================
-# STEP 92.4 FINAL - TOWN10 NIGHT WITH CALIBRATED ACTOR LIGHTS
+# TOWN10 SYNTHETIC-NIGHT SCENE WITH CALIBRATED ACTOR LIGHTS
 #
 # WHY THIS EXISTS
 # ---------------
@@ -2103,7 +2103,7 @@ def main() -> None:
         * 100
     )
     print(
-        "STEP 92.4 - TOWN10 CALIBRATED-ACTOR-LIGHT SYNTHETIC NIGHT"
+        "TOWN10 CALIBRATED-ACTOR-LIGHT SYNTHETIC NIGHT"
     )
     print(
         "="
@@ -3036,7 +3036,7 @@ def main() -> None:
                         str(
                             run_dir
                             / (
-                                "night_review_"
+                                "night_review_frame_"
                                 f"{recorded:03d}.png"
                             )
                         ),
@@ -3046,8 +3046,8 @@ def main() -> None:
                         str(
                             run_dir
                             / (
-                                "night_review_"
-                                f"{recorded:03d}_ANNOTATED.png"
+                                "night_annotated_review_frame_"
+                                f"{recorded:03d}.png"
                             )
                         ),
                         annotate_review_frame(
@@ -3363,8 +3363,8 @@ def main() -> None:
                 str(
                     run_dir
                     / (
-                        "night_review_"
-                        f"{frame_number:03d}_ANNOTATED.png"
+                        "night_annotated_review_frame_"
+                        f"{frame_number:03d}.png"
                     )
                 )
                 for frame_number
@@ -3522,5 +3522,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

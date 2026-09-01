@@ -66,19 +66,21 @@ Pass the active route explicitly when a script provides `--route-json`, rather t
 
 | Purpose | Script |
 |---|---|
-| Lock/reference route construction | `src/carla/CLEAR/step_67_lock_town10_route_from_generated.py` |
-| Clear raw scene | `src/carla/CLEAR/step_68_v3_generate_town10_final_raw_demo.py` |
-| Clear detected scene | `src/carla/CLEAR/step_69_generate_town10_detected_demo.py` |
-| Clear stable output | `src/carla/CLEAR/step_74_generate_town10_clear_stable_final.py` |
-| Rain scene construction | `src/carla/RAIN/step_80_generate_town10_rain_signal_continuation_v8.py` |
-| Rain stable detection | `src/carla/RAIN/step_86_generate_town10_rain_FINAL_STABLE.py` |
-| Rain accepted presentation | `src/carla/RAIN/step_87_generate_town10_rain_FINAL_PERFECT_STABLE.py` |
-| Fog scene construction | `src/carla/FOG/step_90_generate_town10_fog_multivehicle.py` |
-| Fog accepted presentation | `src/carla/FOG/step_91_generate_town10_fog_FINAL_PERFECT_STABLE.py` |
-| Night-looking capture | `src/carla/NIGHT/step_92_4_generate_town10_night_CALIBRATED_LIGHTS_FINAL.py` |
-| Night actor-association diagnostic | `src/carla/NIGHT/step_93_1_detect_town10_night_ACTOR_LIGHTS_FINAL.py` |
+| Lock/reference route construction | `src/carla/CLEAR/lock_town10_reference_route.py` |
+| Clear raw scene | `src/carla/CLEAR/generate_town10_clear_raw_scene.py` |
+| Clear detected scene | `src/carla/CLEAR/run_town10_clear_detection.py` |
+| Clear stable output | `src/carla/CLEAR/generate_town10_clear_stable_output.py` |
+| Rain scene construction | `src/carla/RAIN/generate_town10_rain_scene.py` |
+| Rain stable detection | `src/carla/RAIN/run_town10_rain_stable_detection.py` |
+| Rain accepted presentation | `src/carla/RAIN/generate_town10_rain_presentation_output.py` |
+| Fog scene construction | `src/carla/FOG/generate_town10_fog_scene.py` |
+| Fog accepted presentation | `src/carla/FOG/generate_town10_fog_presentation_output.py` |
+| Synthetic-night capture | `src/carla/NIGHT/generate_town10_synthetic_night_scene.py` |
+| Synthetic-night actor-association diagnostic | `src/carla/NIGHT/run_town10_synthetic_night_diagnostics.py` |
 
 Use `python <script> --help` to inspect each stage's explicit model, input, output, route, host, and port options. Some later stages require artefacts created by earlier stages, and trained weights are intentionally excluded from Git.
+
+Repository-facing scripts and selected presentation artefacts use descriptive lowercase filenames. Historical JSON fields may retain the exact filenames produced on the original workstation; they are provenance values rather than current repository paths. See [File-naming convention](FILE_NAMING_CONVENTION.md).
 
 The Night capture imports helper functions from the accepted Fog capture script. Both files must remain in the committed `src/carla` hierarchy.
 

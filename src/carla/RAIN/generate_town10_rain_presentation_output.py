@@ -15,7 +15,7 @@ from ultralytics import YOLO
 
 
 # =============================================================================
-# STEP 87 - TOWN10 RAIN FINAL PERFECT STABLE
+# TOWN10 RAIN PRESENTATION OUTPUT
 #
 # LOCKED REQUIREMENT:
 #   Exactly 1 lead CAR + 2 PERSON boxes.
@@ -58,17 +58,17 @@ DEFAULT_MODEL = (
 
 DEFAULT_OUTPUT = (
     LOCKED_RUN
-    / "rain_signal_detected_FINAL_PERFECT_STABLE.mp4"
+    / "town10_rain_presentation.mp4"
 )
 
 DEFAULT_REPORT = (
     LOCKED_RUN
-    / "rain_detection_FINAL_PERFECT_STABLE_report.json"
+    / "rain_presentation_report.json"
 )
 
 DEFAULT_METRICS = (
     LOCKED_RUN
-    / "rain_detection_FINAL_PERFECT_STABLE_metrics.csv"
+    / "rain_presentation_metrics.csv"
 )
 
 
@@ -349,8 +349,8 @@ class StableBoxFilter:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Generate the final perfectly stable Town10 rain "
-            "presentation with exactly one car and two persons."
+            "Generate the accepted Town10 rain presentation "
+            "with exactly one car and two persons."
         )
     )
 
@@ -1398,7 +1398,7 @@ def main() -> None:
 
     print("=" * 102)
     print(
-        "STEP 87 - TOWN10 RAIN FINAL PERFECT STABLE"
+        "TOWN10 RAIN PRESENTATION OUTPUT"
     )
     print("=" * 102)
     print(
@@ -1647,7 +1647,7 @@ def main() -> None:
                     str(
                         output_path.parent
                         / (
-                            "perfect_stable_review_"
+                            "rain_review_frame_"
                             f"{frame_number:03d}.png"
                         )
                     ),
@@ -1749,9 +1749,9 @@ def main() -> None:
     ]
 
     status = (
-        "PASS_PERFECT_STABLE"
+        "PASS_PRESENTATION"
         if not failures
-        else "REVIEW_PERFECT_STABLE"
+        else "REVIEW_PRESENTATION"
     )
 
     report = {
@@ -1763,7 +1763,7 @@ def main() -> None:
             "YOLOv8s + CARLA GT-Aided Stable Tracking"
         ),
         "intended_use": (
-            "Qualitative final presentation/demo visualisation. "
+            "Qualitative presentation visualisation. "
             "Stable display counts are not pure YOLO recall."
         ),
         "stabilization": {
@@ -1848,4 +1848,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

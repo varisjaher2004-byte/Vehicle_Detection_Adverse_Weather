@@ -619,7 +619,7 @@ def main() -> None:
     run_dir.mkdir(parents=True, exist_ok=False)
 
     print("=" * 92)
-    print("STEP 67 V2 - LOCK TOWN10 ROUTE FROM GENERATED DATASET")
+    print("LOCK TOWN10 REFERENCE ROUTE FROM GENERATED DATASET")
     print("=" * 92)
     print(f"Map:          {active_map}")
     print(f"Dataset root: {dataset_root}")
@@ -945,6 +945,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
 
 

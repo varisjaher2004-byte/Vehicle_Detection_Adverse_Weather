@@ -15,7 +15,7 @@ from ultralytics import YOLO
 
 
 # =============================================================================
-# STEP 86 - TOWN10 RAIN FINAL STABLE PRESENTATION
+# TOWN10 RAIN STABLE DETECTION
 #
 # PURPOSE
 # -------
@@ -34,7 +34,7 @@ from ultralytics import YOLO
 # recorded capture are used as the geometric tracking reference so the box
 # cannot jump to another vehicle/person or disappear for dozens of frames.
 #
-# This file is for the FINAL PRESENTATION VIDEO.
+# This file creates the accepted presentation video.
 # Do NOT use its stable display-frame counts as pure YOLO recall metrics.
 # Model evaluation metrics must remain the genuine YOLO evaluation results.
 #
@@ -72,17 +72,17 @@ DEFAULT_MODEL = (
 
 DEFAULT_OUTPUT = (
     LOCKED_RUN
-    / "rain_signal_detected_FINAL_STABLE.mp4"
+    / "town10_rain_stable_detection.mp4"
 )
 
 DEFAULT_REPORT = (
     LOCKED_RUN
-    / "rain_detection_FINAL_STABLE_report.json"
+    / "rain_stable_detection_report.json"
 )
 
 DEFAULT_METRICS = (
     LOCKED_RUN
-    / "rain_detection_FINAL_STABLE_metrics.csv"
+    / "rain_stable_detection_metrics.csv"
 )
 
 TARGETS = (
@@ -1514,7 +1514,7 @@ def main() -> None:
 
     print("=" * 100)
     print(
-        "STEP 86 - FINAL STABLE RAIN PRESENTATION"
+        "TOWN10 RAIN STABLE DETECTION"
     )
     print("=" * 100)
     print(
@@ -1533,7 +1533,7 @@ def main() -> None:
         "Method:         YOLOv8s evidence + CARLA GT-aided temporal geometry"
     )
     print(
-        "Purpose:        stable final presentation video"
+        "Purpose:        stable presentation video"
     )
     print(
         "Metric rule:    do NOT treat stable display frames as pure YOLO recall"
@@ -2063,4 +2063,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

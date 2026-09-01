@@ -13,9 +13,9 @@ RUN = ROOT / "outputs" / "town10_fog_multivehicle" / "run_20260807_153009"
 INPUT = RUN / "fog_multivehicle_raw.mp4"
 GT = RUN / "ground_truth_metrics.csv"
 MODEL = ROOT / "outputs" / "training_runs" / "carla_multiclass_yolov8s_final" / "weights" / "best.pt"
-OUTPUT = RUN / "fog_multivehicle_detected_FINAL_PERFECT_STABLE.mp4"
-REPORT = RUN / "fog_detection_FINAL_PERFECT_STABLE_report.json"
-METRICS = RUN / "fog_detection_FINAL_PERFECT_STABLE_metrics.csv"
+OUTPUT = RUN / "town10_fog_presentation.mp4"
+REPORT = RUN / "fog_presentation_report.json"
+METRICS = RUN / "fog_presentation_metrics.csv"
 
 TARGETS = ("forward_motorcycle","forward_car","oncoming_bus","oncoming_motorcycle")
 LABEL = {
@@ -260,7 +260,7 @@ def main():
     reviews={1,20,30,40,50,60,70,80,90,100,110,total}
 
     print("="*104)
-    print("STEP 91 - TOWN10 DENSE FOG FINAL PERFECT STABLE")
+    print("TOWN10 FOG PRESENTATION OUTPUT")
     print("="*104)
     print(f"Input:          {inp}")
     print(f"Model:          {model_path}")
@@ -310,7 +310,7 @@ def main():
                 **{f"{t}_yolo_evidence":int(matches[t] is not None) for t in TARGETS},
             })
             if n in reviews:
-                cv2.imwrite(str(out.parent/f"fog_perfect_review_{n:03d}.png"),frame)
+                cv2.imwrite(str(out.parent/f"fog_review_frame_{n:03d}.png"),frame)
             if n%20==0 or n==total:
                 print(f"Processed {n}/{total} | YOLO: fm={evidence['forward_motorcycle']}, car={evidence['forward_car']}, bus={evidence['oncoming_bus']}, om={evidence['oncoming_motorcycle']} | display: fm={display['forward_motorcycle']}, car={display['forward_car']}, bus={display['oncoming_bus']}, om={display['oncoming_motorcycle']}")
     finally:
@@ -334,7 +334,7 @@ def main():
         "raw_video_not_modified":True,
     }
     fail=[k for k,v in checks.items() if not v]
-    status="PASS_PERFECT_STABLE" if not fail else "REVIEW_PERFECT_STABLE"
+    status="PASS_PRESENTATION" if not fail else "REVIEW_PRESENTATION"
     data={
         "status":status,"input_video":str(inp),"output_video":str(out),"model":str(model_path),
         "method_label":"YOLOv8s + CARLA GT-Aided Stable Tracking",
@@ -358,5 +358,3 @@ def main():
 
 if __name__=="__main__":
     main()
-
-

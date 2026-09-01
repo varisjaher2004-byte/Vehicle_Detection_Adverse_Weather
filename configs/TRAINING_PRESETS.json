@@ -37,7 +37,7 @@
       "amp": true
     },
     "ACDC_NIGHT": {
-      "parameter_source": "notebooks/ACDC_NIGHT.ipynb",
+      "parameter_source": "notebooks/acdc_night_training.ipynb",
       "model": "yolov8l.pt",
       "data": "configs/ACDC/acdc_night.yaml",
       "epochs": 100,
@@ -49,7 +49,7 @@
       "amp": true
     },
     "ACDC_RAIN": {
-      "parameter_source": "notebooks/ACDC_RAIN.ipynb",
+      "parameter_source": "notebooks/acdc_rain_training.ipynb",
       "model": "yolov8l.pt",
       "data": "configs/ACDC/acdc_rain.yaml",
       "epochs": 100,

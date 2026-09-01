@@ -1,0 +1,31 @@
+old_path,new_path,category,reason
+notebooks/ACDC_ENTIRE.ipynb,notebooks/acdc_entire_training.ipynb,notebook,Dataset condition and purpose are explicit
+notebooks/ACDC_FOG.ipynb,notebooks/acdc_fog_training.ipynb,notebook,Dataset condition and purpose are explicit
+notebooks/ACDC_NIGHT.ipynb,notebooks/acdc_night_training.ipynb,notebook,Dataset condition and purpose are explicit
+notebooks/ACDC_RAIN.ipynb,notebooks/acdc_rain_training.ipynb,notebook,Dataset condition and purpose are explicit
+notebooks/DAWN_ENTIRE.ipynb,notebooks/dawn_entire_training.ipynb,notebook,Dataset condition and purpose are explicit
+notebooks/DAWN_FOG.ipynb,notebooks/dawn_fog_training.ipynb,notebook,Dataset condition and purpose are explicit
+notebooks/DAWN_RAIN.ipynb,notebooks/dawn_rain_training.ipynb,notebook,Dataset condition and purpose are explicit
+notebooks/YOLO_COMBINED.ipynb,notebooks/combined_yolov8_training.ipynb,notebook,Training scope and detector are explicit
+notebooks/inference_pipeline.ipynb,notebooks/yolov8_inference_pipeline.ipynb,notebook,Detector and workflow purpose are explicit
+src/carla/CLEAR/step_67_lock_town10_route_from_generated.py,src/carla/CLEAR/lock_town10_reference_route.py,python,Opaque development step removed
+src/carla/CLEAR/step_68_v3_generate_town10_final_raw_demo.py,src/carla/CLEAR/generate_town10_clear_raw_scene.py,python,Condition and capture role are explicit
+src/carla/CLEAR/step_69_generate_town10_detected_demo.py,src/carla/CLEAR/run_town10_clear_detection.py,python,Condition and detection role are explicit
+src/carla/CLEAR/step_74_generate_town10_clear_stable_final.py,src/carla/CLEAR/generate_town10_clear_stable_output.py,python,Repeated final marker removed
+src/carla/RAIN/step_80_generate_town10_rain_signal_continuation_v8.py,src/carla/RAIN/generate_town10_rain_scene.py,python,Version and development step removed
+src/carla/RAIN/step_86_generate_town10_rain_FINAL_STABLE.py,src/carla/RAIN/run_town10_rain_stable_detection.py,python,Repeated final marker removed
+src/carla/RAIN/step_87_generate_town10_rain_FINAL_PERFECT_STABLE.py,src/carla/RAIN/generate_town10_rain_presentation_output.py,python,Overclaiming perfect marker replaced by evidence role
+src/carla/FOG/step_90_generate_town10_fog_multivehicle.py,src/carla/FOG/generate_town10_fog_scene.py,python,Condition and capture role are explicit
+src/carla/FOG/step_91_generate_town10_fog_FINAL_PERFECT_STABLE.py,src/carla/FOG/generate_town10_fog_presentation_output.py,python,Overclaiming perfect marker replaced by evidence role
+src/carla/NIGHT/step_92_4_generate_town10_night_CALIBRATED_LIGHTS_FINAL.py,src/carla/NIGHT/generate_town10_synthetic_night_scene.py,python,Synthetic construct and capture role are explicit
+src/carla/NIGHT/step_93_1_detect_town10_night_ACTOR_LIGHTS_FINAL.py,src/carla/NIGHT/run_town10_synthetic_night_diagnostics.py,python,Synthetic construct and diagnostic role are explicit
+results/CARLA/FOG/fog_detection_FINAL_PERFECT_STABLE_metrics.csv,results/CARLA/FOG/fog_presentation_metrics.csv,result,Presentation evidence role replaces perfect marker
+results/CARLA/FOG/fog_detection_FINAL_PERFECT_STABLE_report.json,results/CARLA/FOG/fog_presentation_report.json,result,Presentation evidence role replaces perfect marker
+results/CARLA/FOG/fog_perfect_review_090.png,results/CARLA/FOG/fog_review_frame_090.png,result,Neutral review-frame description
+results/CARLA/RAIN/rain_detection_FINAL_PERFECT_STABLE_metrics.csv,results/CARLA/RAIN/rain_presentation_metrics.csv,result,Presentation evidence role replaces perfect marker
+results/CARLA/RAIN/rain_detection_FINAL_PERFECT_STABLE_report.json,results/CARLA/RAIN/rain_presentation_report.json,result,Presentation evidence role replaces perfect marker
+results/CARLA/RAIN/perfect_stable_review_200.png,results/CARLA/RAIN/rain_review_frame_200.png,result,Condition and neutral review-frame role are explicit
+results/CARLA/NIGHT/night_detection_FINAL_STABLE_metrics.csv,results/CARLA/NIGHT/night_diagnostic_metrics.csv,result,Diagnostic evidence role replaces final marker
+results/CARLA/NIGHT/night_detection_FINAL_STABLE_report.json,results/CARLA/NIGHT/night_diagnostic_report.json,result,Diagnostic evidence role replaces final marker
+results/CARLA/NIGHT/night_detected_review_070.png,results/CARLA/NIGHT/night_detection_review_frame_070.png,result,Detection review-frame role is explicit
+results/CARLA/NIGHT/night_review_070_ANNOTATED.png,results/CARLA/NIGHT/night_annotated_review_frame_070.png,result,Annotation and frame number are explicit

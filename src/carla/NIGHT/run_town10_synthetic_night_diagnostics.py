@@ -17,7 +17,7 @@ from ultralytics import YOLO
 
 
 # =============================================================================
-# STEP 93.1 - ACTOR-LIGHT NIGHT DETECTION + HONEST RAW-YOLO EVALUATION
+# SYNTHETIC-NIGHT ACTOR-ASSOCIATION AND RAW-YOLO DIAGNOSTICS
 #
 # This follows the accepted clear/rain/fog workflow:
 #   - custom YOLOv8s best.pt
@@ -866,17 +866,17 @@ def main() -> None:
     output_path = (
         args.output
         if args.output is not None
-        else run_dir / "town10_night_detected_FINAL_STABLE.mp4"
+        else run_dir / "town10_synthetic_night_diagnostic.mp4"
     ).resolve()
     report_path = (
         args.report
         if args.report is not None
-        else run_dir / "night_detection_FINAL_STABLE_report.json"
+        else run_dir / "night_diagnostic_report.json"
     ).resolve()
     metrics_path = (
         args.metrics
         if args.metrics is not None
-        else run_dir / "night_detection_FINAL_STABLE_metrics.csv"
+        else run_dir / "night_diagnostic_metrics.csv"
     ).resolve()
 
     if not (0.0 < args.conf < 1.0):
@@ -925,7 +925,7 @@ def main() -> None:
     )
 
     print("=" * 104)
-    print("STEP 93.1 - TOWN10 ACTOR-LIGHT NIGHT DETECTION FINAL")
+    print("TOWN10 SYNTHETIC-NIGHT DIAGNOSTICS")
     print("=" * 104)
     print(f"Run directory:  {run_dir}")
     print(f"Input:          {input_path}")
@@ -1239,7 +1239,7 @@ def main() -> None:
                 cv2.imwrite(
                     str(
                         output_path.parent
-                        / f"night_detected_review_{current_frame:03d}.png"
+                        / f"night_detection_review_frame_{current_frame:03d}.png"
                     ),
                     image,
                 )
@@ -1395,7 +1395,7 @@ def main() -> None:
         "review_frames": [
             str(
                 output_path.parent
-                / f"night_detected_review_{frame:03d}.png"
+                / f"night_detection_review_frame_{frame:03d}.png"
             )
             for frame in sorted(review_frames)
         ],
@@ -1427,4 +1427,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

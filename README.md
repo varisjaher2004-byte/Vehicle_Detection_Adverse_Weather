@@ -18,6 +18,7 @@ This repository evaluates how an Ultralytics **YOLOv8l** detector behaves when i
 | Check evidence rules | [Evidence-integrity guide](docs/EVIDENCE_INTEGRITY.md) |
 | Verify the repository | Run the two verification commands below |
 | Audit the final package | [Final repository audit](docs/FINAL_REPOSITORY_AUDIT_2026-09-01.md) |
+| Understand formal filenames | [File-naming convention and rename provenance](docs/FILE_NAMING_CONVENTION.md) |
 
 ### Fast integrity check
 

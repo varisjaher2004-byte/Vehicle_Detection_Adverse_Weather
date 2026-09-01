@@ -458,7 +458,7 @@ def main() -> None:
     inference_times_ms: list[float] = []
 
     print("=" * 88)
-    print("STEP 69 - TOWN10 OFFLINE YOLO DEMO")
+    print("TOWN10 CLEAR OFFLINE YOLO DETECTION")
     print("=" * 88)
     print(f"Input:        {input_video}")
     print(f"Model:        {model_path}")
@@ -748,7 +748,7 @@ def main() -> None:
     )
 
     summary_lines = [
-        "STEP 69 - TOWN10 OFFLINE YOLO DEMO",
+        "TOWN10 CLEAR OFFLINE YOLO DETECTION",
         "=" * 76,
         "Status: PASS",
         f"Input video: {input_video}",
@@ -818,4 +818,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

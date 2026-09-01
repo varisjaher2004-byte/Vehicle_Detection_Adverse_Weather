@@ -8,15 +8,15 @@ A read-only audit found 118 occurrences of the original Windows project root in 
 
 | Notebook | Source-cell occurrences |
 |---|---:|
-| ACDC_ENTIRE.ipynb | 3 |
-| ACDC_FOG.ipynb | 16 |
-| ACDC_NIGHT.ipynb | 4 |
-| ACDC_RAIN.ipynb | 7 |
-| DAWN_ENTIRE.ipynb | 2 |
-| DAWN_FOG.ipynb | 13 |
-| DAWN_RAIN.ipynb | 10 |
-| inference_pipeline.ipynb | 30 |
-| YOLO_COMBINED.ipynb | 33 |
+| `acdc_entire_training.ipynb` | 3 |
+| `acdc_fog_training.ipynb` | 16 |
+| `acdc_night_training.ipynb` | 4 |
+| `acdc_rain_training.ipynb` | 7 |
+| `dawn_entire_training.ipynb` | 2 |
+| `dawn_fog_training.ipynb` | 13 |
+| `dawn_rain_training.ipynb` | 10 |
+| `yolov8_inference_pipeline.ipynb` | 30 |
+| `combined_yolov8_training.ipynb` | 33 |
 
 These paths are provenance from the original workstation. They are not credentials or secrets, but they are not portable.
 
@@ -45,4 +45,4 @@ If a notebook is adapted to another machine:
 5. revalidate image-label matching and class IDs;
 6. do not treat edited code plus old output as a reproduced experiment.
 
-The `inference_pipeline.ipynb` additionally requires trained model weights, which are intentionally excluded from Git.
+The `yolov8_inference_pipeline.ipynb` notebook additionally requires trained model weights, which are intentionally excluded from Git.

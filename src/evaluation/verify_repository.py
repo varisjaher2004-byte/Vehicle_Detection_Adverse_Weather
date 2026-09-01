@@ -63,6 +63,52 @@ SOURCE_COLUMNS = {
     "map50_95": "metrics/mAP50-95(B)",
 }
 
+FORMAL_NOTEBOOK_PATHS = {
+    "notebooks/acdc_entire_training.ipynb",
+    "notebooks/acdc_fog_training.ipynb",
+    "notebooks/acdc_night_training.ipynb",
+    "notebooks/acdc_rain_training.ipynb",
+    "notebooks/dawn_entire_training.ipynb",
+    "notebooks/dawn_fog_training.ipynb",
+    "notebooks/dawn_rain_training.ipynb",
+    "notebooks/combined_yolov8_training.ipynb",
+    "notebooks/yolov8_inference_pipeline.ipynb",
+}
+
+FORMAL_CARLA_SCRIPT_PATHS = {
+    "src/carla/CLEAR/lock_town10_reference_route.py",
+    "src/carla/CLEAR/generate_town10_clear_raw_scene.py",
+    "src/carla/CLEAR/run_town10_clear_detection.py",
+    "src/carla/CLEAR/generate_town10_clear_stable_output.py",
+    "src/carla/RAIN/generate_town10_rain_scene.py",
+    "src/carla/RAIN/run_town10_rain_stable_detection.py",
+    "src/carla/RAIN/generate_town10_rain_presentation_output.py",
+    "src/carla/FOG/generate_town10_fog_scene.py",
+    "src/carla/FOG/generate_town10_fog_presentation_output.py",
+    "src/carla/NIGHT/generate_town10_synthetic_night_scene.py",
+    "src/carla/NIGHT/run_town10_synthetic_night_diagnostics.py",
+}
+
+FORMAL_CARLA_RESULT_PATHS = {
+    "results/CARLA/FOG/fog_presentation_metrics.csv",
+    "results/CARLA/FOG/fog_presentation_report.json",
+    "results/CARLA/FOG/fog_review_frame_090.png",
+    "results/CARLA/RAIN/rain_presentation_metrics.csv",
+    "results/CARLA/RAIN/rain_presentation_report.json",
+    "results/CARLA/RAIN/rain_review_frame_200.png",
+    "results/CARLA/NIGHT/night_diagnostic_metrics.csv",
+    "results/CARLA/NIGHT/night_diagnostic_report.json",
+    "results/CARLA/NIGHT/night_detection_review_frame_070.png",
+    "results/CARLA/NIGHT/night_annotated_review_frame_070.png",
+}
+
+LEGACY_FILENAME_MARKERS = (
+    "FINAL_PERFECT_STABLE",
+    "FINAL_STABLE",
+    "perfect_stable",
+    "fog_perfect",
+)
+
 
 def _normalise_names(value: object) -> list[str]:
     if isinstance(value, list):
@@ -159,6 +205,35 @@ def verify_training_presets() -> None:
         print(f"PRESET PASS: {experiment_id}")
 
 
+def verify_formal_filenames() -> None:
+    expected_paths = (
+        FORMAL_NOTEBOOK_PATHS
+        | FORMAL_CARLA_SCRIPT_PATHS
+        | FORMAL_CARLA_RESULT_PATHS
+    )
+    for relative_path in expected_paths:
+        assert (REPOSITORY_ROOT / relative_path).is_file(), (
+            f"Missing formally named artefact: {relative_path}"
+        )
+
+    for relative_root in ("notebooks", "src/carla", "results/CARLA"):
+        for path in (REPOSITORY_ROOT / relative_root).rglob("*"):
+            if not path.is_file():
+                continue
+            if "__pycache__" in path.parts or path.suffix == ".pyc":
+                continue
+            assert not any(marker in path.name for marker in LEGACY_FILENAME_MARKERS), (
+                f"Informal legacy filename retained: {path.relative_to(REPOSITORY_ROOT)}"
+            )
+
+    print(
+        "NAMING PASS: "
+        f"{len(FORMAL_NOTEBOOK_PATHS)} notebooks, "
+        f"{len(FORMAL_CARLA_SCRIPT_PATHS)} CARLA scripts and "
+        f"{len(FORMAL_CARLA_RESULT_PATHS)} CARLA evidence files"
+    )
+
+
 def verify_carla_route() -> None:
     with CARLA_ROUTE_PATH.open(encoding="utf-8") as handle:
         route = json.load(handle)
@@ -196,6 +271,7 @@ def main() -> None:
     verify_configs()
     verify_manifest()
     verify_training_presets()
+    verify_formal_filenames()
     verify_carla_route()
     verify_corrected_evidence()
     print(
