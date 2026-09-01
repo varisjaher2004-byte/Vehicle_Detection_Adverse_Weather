@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this repository, cite the exact commit or release tag and the original dataset/software publications."
+title: "YOLO-Based Vehicle Detection Under Adverse Environmental Conditions"
+type: software
+version: 1.0.0
+date-released: 2026-09-01
+authors:
+  - family-names: Kureshi
+    given-names: "Varis Jahirbhai"
+repository-code: "https://github.com/varisjaher2004-byte/Vehicle_Detection_Adverse_Weather"
+url: "https://github.com/varisjaher2004-byte/Vehicle_Detection_Adverse_Weather"
+abstract: >-
+  Reproducible MSc research artefacts for evaluating a YOLOv8l detector across
+  prepared ACDC, corrected DAWN and Combined adverse-weather domains, including
+  a non-destructive label correction, a seven-cell cross-domain validation
+  matrix, checkpoint lineage and bounded CARLA qualitative diagnostics.
+keywords:
+  - object detection
+  - adverse weather
+  - YOLOv8
+  - domain shift
+  - ACDC
+  - DAWN
+  - CARLA

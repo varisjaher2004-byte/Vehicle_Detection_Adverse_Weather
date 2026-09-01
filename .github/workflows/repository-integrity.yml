@@ -26,5 +26,8 @@ jobs:
       - name: Verify configs, evidence, presets, and CARLA route
         run: python src/evaluation/verify_repository.py
 
+      - name: Verify final dissertation and defence package
+        run: python src/evaluation/verify_submission_package.py
+
       - name: Compile Python source
         run: python -m compileall -q src

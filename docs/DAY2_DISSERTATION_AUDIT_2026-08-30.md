@@ -1,5 +1,7 @@
 # Day 2 Dissertation Finalisation Audit
 
+> Historical checkpoint: this audit is retained for provenance. It is superseded for current access by `docs/FINAL_REPOSITORY_AUDIT_2026-09-01.md` and the final dissertation under `docs/submission/`.
+
 Project: *Performance Evaluation of YOLO-based Vehicle Detection under Adverse Environmental Conditions*
 
 Author: Varis Jahirbhai Kureshi (Student ID 35042321)
@@ -47,4 +49,3 @@ Signed UREC1 evidence and the signed publication form are external student-contr
 - Obtain and retain the signed UREC1 and publication-form evidence before institutional submission.
 - Complete the separate PowerPoint refinement and viva preparation work.
 - Perform the final submission-package audit and freeze only after all later roadmap tasks pass.
-
