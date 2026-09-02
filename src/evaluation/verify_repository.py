@@ -104,6 +104,13 @@ FORMAL_CARLA_RESULT_PATHS = {
     "results/CARLA/NIGHT/night_annotated_review_frame_070.png",
 }
 
+FORMAL_TRAINING_PLOT_HASHES = {
+    "results/ACDC/FOG/BoxP_curve.png": "3891fa544bf0f8148c219d8b70509715664a907f23a225a83fca2a6f54b22eac",
+    "results/ACDC/FOG/BoxR_curve.png": "f5762cc3f216e2ab80280b40d65cba31c27eb30b3c4bdb68f03a0db4dc01b5e0",
+    "results/DAWN/ENTIRE/BoxP_curve.png": "d206d2a1700ca26054d03a1671d5bdc1d4059db60570baabf7b166f5d9aa928b",
+    "results/DAWN/ENTIRE/BoxR_curve.png": "8bb40b04329a429c9606cbdf996c32072630a910271594e596ede25763eac0de",
+}
+
 LEGACY_FILENAME_MARKERS = (
     "FINAL_PERFECT_STABLE",
     "FINAL_STABLE",
@@ -225,6 +232,7 @@ def verify_formal_filenames() -> None:
         FORMAL_NOTEBOOK_PATHS
         | FORMAL_CARLA_SCRIPT_PATHS
         | FORMAL_CARLA_RESULT_PATHS
+        | set(FORMAL_TRAINING_PLOT_HASHES)
     )
     for relative_path in expected_paths:
         assert (REPOSITORY_ROOT / relative_path).is_file(), (
@@ -241,11 +249,16 @@ def verify_formal_filenames() -> None:
                 f"Informal legacy filename retained: {path.relative_to(REPOSITORY_ROOT)}"
             )
 
+    for relative_path, expected_hash in FORMAL_TRAINING_PLOT_HASHES.items():
+        actual_hash = _sha256(REPOSITORY_ROOT / relative_path)
+        assert actual_hash == expected_hash, f"Training-plot hash mismatch: {relative_path}"
+
     print(
         "NAMING PASS: "
         f"{len(FORMAL_NOTEBOOK_PATHS)} notebooks, "
         f"{len(FORMAL_CARLA_SCRIPT_PATHS)} CARLA scripts and "
-        f"{len(FORMAL_CARLA_RESULT_PATHS)} CARLA evidence files"
+        f"{len(FORMAL_CARLA_RESULT_PATHS)} CARLA evidence files; "
+        f"TRAINING PLOT PASS: {len(FORMAL_TRAINING_PLOT_HASHES)} files"
     )
 
 
@@ -369,7 +382,8 @@ def main() -> None:
     print(
         "REPOSITORY VERIFICATION PASS: "
         f"{len(CONFIG_PATHS)} configs, {len(APPROVED_RESULTS)} experiments, "
-        f"{len(APPROVED_RESULTS)} presets, 1 inference inventory, "
+        f"{len(APPROVED_RESULTS)} presets, {len(FORMAL_TRAINING_PLOT_HASHES)} training plots, "
+        "1 inference inventory, "
         "1 CARLA route, 1 corrected evidence set"
     )
 

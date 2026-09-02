@@ -24,6 +24,10 @@ The original files below this directory remain compact artefacts from completed 
 
 Run `python src/evaluation/verify_repository.py` from the repository root to verify both this provenance chain and the corrected final evidence.
 
+## Training visual diagnostics
+
+Compact standard training curves and result plots are retained alongside their corresponding experiment CSVs. The final D-drive coverage audit added the previously omitted ACDC Fog and DAWN Entire Precision/Recall curves, with exact SHA-256 checks in the repository verifier. The old DAWN Rain `results.png` was not added because it depicts the superseded low-performing July run rather than the corrected final result. Training/validation batch mosaics remain excluded because they are redundant debugging previews and may reproduce restricted source-dataset imagery.
+
 ## Real-world qualitative inference evidence
 
 The repository now includes 240 licence-compatible annotated DAWN predictions:
