@@ -122,7 +122,7 @@ def read_gt(path):
     out={}
     for r in rows:
         try: out[int(float(r["video_frame"]))]=r
-        except: pass
+        except (KeyError, TypeError, ValueError): pass
     if not out: raise RuntimeError("No usable ground-truth rows.")
     return out
 
@@ -140,7 +140,7 @@ def gt_box(r,t):
         enc=int(float(r[f"{t}_encounter"]))==1
         x1=float(r[f"{t}_x1"]); y1=float(r[f"{t}_y1"]); x2=float(r[f"{t}_x2"]); y2=float(r[f"{t}_y2"])
         d=float(r[f"{t}_depth_m"])
-    except: return None
+    except (KeyError, TypeError, ValueError): return None
     if not vis or not enc or not all(math.isfinite(v) for v in (x1,y1,x2,y2,d)): return None
     if x2<=x1 or y2<=y1 or d<1 or d>48 or (x2-x1)*(y2-y1)<MIN_AREA[t]: return None
     return (x1,y1,x2,y2)

@@ -14,6 +14,11 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = REPOSITORY_ROOT / "docs" / "FINAL_SUBMISSION_MANIFEST.csv"
 WORD_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 DRAWING_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
+DC_NS = "http://purl.org/dc/elements/1.1/"
+DCTERMS_NS = "http://purl.org/dc/terms/"
+CORE_NS = "http://schemas.openxmlformats.org/package/2006/metadata/core-properties"
+REL_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
+EXPECTED_AUTHOR = "Varis Jahirbhai Kureshi"
 
 
 def sha256(path: Path) -> str:
@@ -33,6 +38,34 @@ def numbered_members(archive: ZipFile, pattern: str) -> list[str]:
     expression = re.compile(pattern)
     members = [name for name in archive.namelist() if expression.fullmatch(name)]
     return sorted(members, key=lambda name: int(re.search(r"(\d+)(?=\.xml$)", name).group(1)))
+
+
+def core_properties(archive: ZipFile) -> dict[str, str]:
+    root = ET.fromstring(archive.read("docProps/core.xml"))
+    names = {
+        "title": (DC_NS, "title"),
+        "subject": (DC_NS, "subject"),
+        "creator": (DC_NS, "creator"),
+        "last_modified_by": (CORE_NS, "lastModifiedBy"),
+        "created": (DCTERMS_NS, "created"),
+        "modified": (DCTERMS_NS, "modified"),
+    }
+    return {
+        name: (root.findtext(f"{{{namespace}}}{tag}") or "").strip()
+        for name, (namespace, tag) in names.items()
+    }
+
+
+def forbidden_office_members(archive: ZipFile) -> list[str]:
+    patterns = (
+        "vbaproject.bin",
+        "activex",
+        "/comments",
+        "commentauthors",
+        "people.xml",
+        "revisioninfo",
+    )
+    return [name for name in archive.namelist() if any(token in name.casefold() for token in patterns)]
 
 
 def verify_manifest() -> dict[str, Path]:
@@ -56,6 +89,23 @@ def verify_dissertation(path: Path) -> None:
         assert archive.testzip() is None, "Corrupt DOCX member"
         required_members = {"word/document.xml", "word/styles.xml", "word/settings.xml"}
         assert required_members <= set(archive.namelist()), "Incomplete DOCX package"
+        props = core_properties(archive)
+        assert props["creator"] == EXPECTED_AUTHOR, f"Unexpected DOCX author: {props['creator']}"
+        assert props["created"] == "2026-06-06T14:45:00Z", f"Unexpected DOCX creation date: {props['created']}"
+        assert props["title"] == (
+            "Performance Evaluation of YOLO-based Vehicle Detection under Adverse Environmental Conditions "
+            "Using Simulation and Real-World Datasets"
+        ), f"Unexpected DOCX title: {props['title']}"
+        forbidden = forbidden_office_members(archive)
+        assert not forbidden, f"DOCX contains comments, macro, ActiveX or revision parts: {forbidden}"
+        tracked_changes: list[str] = []
+        for member in archive.namelist():
+            if not member.startswith("word/") or not member.endswith(".xml"):
+                continue
+            root = ET.fromstring(archive.read(member))
+            if root.find(f".//{{{WORD_NS}}}ins") is not None or root.find(f".//{{{WORD_NS}}}del") is not None:
+                tracked_changes.append(member)
+        assert not tracked_changes, f"DOCX contains tracked insertions/deletions: {tracked_changes}"
         text = package_text(archive, "word/document.xml", WORD_NS)
     normalised = " ".join(text.split()).casefold()
 
@@ -67,6 +117,9 @@ def verify_dissertation(path: Path) -> None:
         "Appendix B - Ethics Form and Approval Evidence",
         "Appendix G - Data, Code and Evidence",
         "Appendix J - Supporting Evidence",
+        "Generative-AI tools were used within the permitted AITS 2 scope",
+        "No passwords, authentication credentials, human-participant data",
+        "no ethics approval is claimed",
         "0.1362",
         "0.1122",
         "0.4069",
@@ -76,12 +129,28 @@ def verify_dissertation(path: Path) -> None:
     for token in required_text:
         assert token.casefold() in normalised, f"Missing dissertation content: {token}"
     assert "0.1984" not in normalised, "Superseded rounded F1 display found in dissertation"
-    print("DISSERTATION PASS: headings, appendices and canonical result values present")
+    print(
+        "DISSERTATION PASS: metadata, clean revision state, transparent AI/ethics declarations, "
+        "appendices and canonical result values present"
+    )
 
 
 def verify_defence(path: Path) -> None:
     with ZipFile(path) as archive:
         assert archive.testzip() is None, "Corrupt PPTX member"
+        props = core_properties(archive)
+        assert props["creator"] == EXPECTED_AUTHOR, f"Unexpected PPTX author: {props['creator']}"
+        assert props["created"] == "2026-08-30T20:08:45.6080000Z", (
+            f"Unexpected PPTX creation date: {props['created']}"
+        )
+        assert props["title"] == (
+            "Performance Evaluation of YOLO-based Vehicle Detection under Adverse Environmental Conditions"
+        ), f"Unexpected PPTX title: {props['title']}"
+        assert props["subject"] == "MSc Artificial Intelligence Dissertation", (
+            f"Unexpected PPTX subject: {props['subject']}"
+        )
+        forbidden = forbidden_office_members(archive)
+        assert not forbidden, f"PPTX contains comments, macro, ActiveX or revision parts: {forbidden}"
         slides = numbered_members(archive, r"ppt/slides/slide\d+\.xml")
         notes = numbered_members(archive, r"ppt/notesSlides/notesSlide\d+\.xml")
         media = [name for name in archive.namelist() if name.startswith("ppt/media/")]
@@ -89,6 +158,36 @@ def verify_defence(path: Path) -> None:
         assert len(slides) == 20, f"Expected 20 slides, found {len(slides)}"
         assert len(notes) == 20, f"Expected 20 note pages, found {len(notes)}"
         assert len(videos) == 1, f"Expected one embedded MP4, found {len(videos)}"
+        assert archive.getinfo(videos[0]).file_size > 1024 * 1024, "Embedded MP4 is unexpectedly small"
+
+        hidden_slides = []
+        for index, member in enumerate(slides, start=1):
+            root = ET.fromstring(archive.read(member))
+            if root.attrib.get("show", "1") in {"0", "false", "False"}:
+                hidden_slides.append(index)
+        assert not hidden_slides, f"Hidden slides found: {hidden_slides}"
+
+        external_relationships: list[str] = []
+        for member in archive.namelist():
+            if not member.endswith(".rels"):
+                continue
+            root = ET.fromstring(archive.read(member))
+            for relationship in root.findall(f"{{{REL_NS}}}Relationship"):
+                if relationship.attrib.get("TargetMode") == "External":
+                    external_relationships.append(f"{member}: {relationship.attrib.get('Target', '')}")
+        assert not external_relationships, f"External PPTX relationships found: {external_relationships}"
+
+        metadata_members = [
+            name
+            for name in archive.namelist()
+            if name in {"docProps/core.xml", "docProps/app.xml", "docProps/custom.xml"}
+            or name.startswith(("ppt/theme/", "ppt/slideMasters/"))
+        ]
+        metadata_text = " ".join(
+            archive.read(name).decode("utf-8", errors="ignore") for name in metadata_members
+        ).casefold()
+        for unwanted in ("walnut exporter", "chatgpt"):
+            assert unwanted not in metadata_text, f"Automated/template metadata found: {unwanted}"
 
         slide_text = " ".join(package_text(archive, name, DRAWING_NS) for name in slides)
         note_texts = [package_text(archive, name, DRAWING_NS) for name in notes]
@@ -115,7 +214,10 @@ def verify_defence(path: Path) -> None:
     for token in required_text:
         assert token.casefold() in normalised, f"Missing presentation content: {token}"
     assert ".1984" not in normalised, "Superseded rounded F1 display found in presentation"
-    print("DEFENCE PASS: 20 slides, 20 sourced note pages and one embedded MP4")
+    print(
+        "DEFENCE PASS: clean metadata, no hidden slides/external links/revision parts, "
+        "20 slides, 20 sourced note pages and one embedded MP4"
+    )
 
 
 def main() -> None:

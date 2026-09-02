@@ -16,7 +16,7 @@ Verification date: 20 August 2026
 | CARLA Python API | 0.9.16 |
 | NumPy | 2.5.1 |
 | Pandas | 3.0.5 |
-| OpenCV | 5.0.0 |
+| OpenCV runtime | 5.0.0 (`opencv-python` package 5.0.0.93) |
 | Matplotlib | 3.11.1 |
 | PyYAML | 6.0.3 |
 | Pillow | 12.3.0 |
@@ -55,7 +55,7 @@ The repository intentionally excludes:
 
 - raw ACDC and DAWN datasets;
 - trained model weights;
-- generated videos;
+- standalone generated videos outside the embedded defence asset;
 - large archives;
 - local caches and temporary experiment runs.
 

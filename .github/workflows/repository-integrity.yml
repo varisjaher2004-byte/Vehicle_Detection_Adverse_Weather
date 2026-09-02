@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Verify public-release safety, notebooks and internal links
+        run: python src/evaluation/verify_public_release.py
+
       - name: Install verifier dependency
         run: python -m pip install PyYAML==6.0.3
 

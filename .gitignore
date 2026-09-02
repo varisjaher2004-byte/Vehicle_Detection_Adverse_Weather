@@ -18,6 +18,13 @@ datasets/
 data/raw/
 runs/
 .cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tmp-pycache/
+.audit-deps/
+.coverage
+htmlcov/
 Thumbs.db
 .DS_Store
 ~$*.docx

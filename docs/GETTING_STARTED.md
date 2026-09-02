@@ -35,12 +35,13 @@ Then run:
 
 ```bash
 python -m pip install PyYAML==6.0.3
+python src/evaluation/verify_public_release.py
 python src/evaluation/verify_repository.py
 python src/evaluation/verify_submission_package.py
 python -m compileall -q src
 ```
 
-These checks are read-only. They verify the committed configuration and evidence; they do not start training.
+These checks are read-only. They verify public-release safety, notebook cleanliness, internal links, committed configuration, research evidence and the final Office packages; they do not start training.
 
 ### Experiment reproducer
 

@@ -1,4 +1,4 @@
-# Final Repository Audit - 1 September 2026
+# Final Repository Audit - updated 2 September 2026
 
 Project: *Performance Evaluation of YOLO-Based Vehicle Detection Under Adverse Environmental Conditions*
 
@@ -14,10 +14,10 @@ This audit reconciles the repository with the final dissertation and the latest 
 
 | Artefact | SHA-256 | Bytes | Status |
 |---|---|---:|---|
-| Final dissertation DOCX | `ADF7544424D9A70FFAAF4A57A1772A9397E056ED6CCE6F47AD52D07B125A9282` | 7,156,098 | Package integrity PASS |
-| Final defence PPTX | `359B9B7B0266B4DB79D3384A8F59E79663C8BCD6B9B11F8B6B1DA5D7F658F08E` | 68,383,940 | 20 slides, 20 notes and embedded MP4 present |
+| Final dissertation DOCX | `56DB26866F98D25808D745536151D93DE86A4557166DFE663E64FE8788CDA3C3` | 7,149,696 | Package, authorship metadata and declaration checks PASS |
+| Final defence PPTX | `7AAED2AAF786440E25D2CA72CB15355A761CA038615B1CF8CB969B6BB817B463` | 68,382,504 | Metadata, 20 slides, 20 notes and embedded MP4 checks PASS |
 
-The dissertation matches the final 31 August workspace copy byte-for-byte. The Desktop presentation was the latest saved copy and is therefore the accepted presentation artefact for this update.
+These hashes identify the cleaned public research-content copies accepted on 2 September. The Word file records the original research-document creation date and the PowerPoint records the actual defence-deck creation date; neither date was artificially changed to the cleanup date. Both files identify Varis Jahirbhai Kureshi as creator. The presentation no longer contains third-party template authorship or revision-history metadata.
 
 ## Research consistency checks
 
@@ -44,8 +44,20 @@ The dissertation matches the final 31 August workspace copy byte-for-byte. The D
 - made the corrected seven-cell matrix the obvious canonical result;
 - retained historical notebooks and result files as provenance without promoting superseded DAWN/Combined claims;
 - kept raw datasets, trained weights, large generated runs and private administrative forms outside Git.
+- corrected the installable OpenCV package pin to `opencv-python==5.0.0.93` while retaining the recorded 5.0.0 runtime version;
+- added a public-release verifier for required files, GitHub file policy, clean notebooks, internal links and credential-shaped text;
+- tightened final-package verification for authorship metadata, creation dates, tracked changes, hidden slides, external relationships and automated/template metadata.
 
 ## Automated verification scope
+
+`python src/evaluation/verify_public_release.py` verifies:
+
+- all public entry points and final research-content files are present;
+- no raw weights, standalone videos, archives, caches or separately signed administrative forms are published;
+- every file remains below GitHub's 100 MiB single-file limit;
+- all nine archival notebooks have valid notebook structure and cleared outputs/execution counts;
+- internal Markdown links resolve;
+- public text does not contain credential-shaped tokens or private keys.
 
 `python src/evaluation/verify_repository.py` verifies:
 
@@ -61,8 +73,12 @@ The dissertation matches the final 31 August workspace copy byte-for-byte. The D
 
 - final DOCX/PPTX hashes and byte sizes;
 - Office ZIP package integrity;
+- expected creator, title and creation-date metadata;
+- no comments, macros, ActiveX, tracked Word changes or PowerPoint revision parts;
+- the transparent AITS 2 AI-use declaration and the non-claim of ethics approval before the signed Blackboard record is inserted;
 - required dissertation headings and core result values;
 - 20 slides and 20 note pages;
+- no hidden slides, external relationships or automated/template metadata in the presentation;
 - a `[Sources]` block in every speaker-note page;
 - one embedded MP4;
 - presence of the canonical matrix values and absence of superseded F1 display `0.1984`.

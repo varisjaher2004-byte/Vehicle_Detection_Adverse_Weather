@@ -16,7 +16,7 @@ This repository evaluates how an Ultralytics **YOLOv8l** detector behaves when i
 | Inspect the canonical numbers | [Seven-cell validation matrix](results/CORRECTED_2026-08-27/final_cross_domain_validation_matrix.csv) |
 | Understand the DAWN correction | [Label-integrity record](docs/LABEL_INTEGRITY_CORRECTION_2026-08-27.md) |
 | Check evidence rules | [Evidence-integrity guide](docs/EVIDENCE_INTEGRITY.md) |
-| Verify the repository | Run the two verification commands below |
+| Verify the repository | Run the three verification commands below |
 | Audit the final package | [Final repository audit](docs/FINAL_REPOSITORY_AUDIT_2026-09-01.md) |
 | Check local-to-GitHub coverage | [Final D-drive coverage audit](docs/FINAL_D_DRIVE_COVERAGE_AUDIT_2026-09-02.md) |
 | Understand formal filenames | [File-naming convention and rename provenance](docs/FILE_NAMING_CONVENTION.md) |
@@ -27,12 +27,13 @@ The verification route does not require raw datasets, trained weights, CARLA or 
 
 ```bash
 python -m pip install PyYAML==6.0.3
+python src/evaluation/verify_public_release.py
 python src/evaluation/verify_repository.py
 python src/evaluation/verify_submission_package.py
 python -m compileall -q src
 ```
 
-The first verifier checks active YAMLs, historical same-row evidence, training presets, the locked CARLA route and the corrected evidence set. The second checks the final DOCX/PPTX hashes, package integrity, required research content, 20-slide/20-note structure and the embedded CARLA video.
+The public-release verifier checks required files, GitHub size/type policy, notebook cleanliness, internal links and credential-shaped text. The research verifier checks active YAMLs, historical same-row evidence, training presets, the locked CARLA route and the corrected evidence set. The submission verifier checks final hashes, Office package integrity and metadata, the AI/ethics declaration boundary, the 20-slide/20-note structure and the embedded CARLA video.
 
 ## Research at a glance
 
