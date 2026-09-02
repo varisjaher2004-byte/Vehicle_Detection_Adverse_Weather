@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -19,6 +20,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = REPOSITORY_ROOT / "docs" / "EVIDENCE_MANIFEST.csv"
 PRESETS_PATH = REPOSITORY_ROOT / "configs" / "TRAINING_PRESETS.json"
 CARLA_ROUTE_PATH = REPOSITORY_ROOT / "configs" / "CARLA" / "locked_town10_reference_route.json"
+INFERENCE_INVENTORY_PATH = REPOSITORY_ROOT / "results" / "REAL_WORLD_INFERENCE_INVENTORY.csv"
 
 CLASS_NAMES = [
     "person",
@@ -108,6 +110,19 @@ LEGACY_FILENAME_MARKERS = (
     "perfect_stable",
     "fog_perfect",
 )
+
+INFERENCE_CSV_PATHS = {
+    "results/ACDC/ENTIRE/inference_results.csv",
+    "results/ACDC/FOG/inference_results.csv",
+    "results/ACDC/NIGHT/inference_results.csv",
+    "results/ACDC/RAIN/inference_results.csv",
+    "results/ACDC/SNOW/inference_results.csv",
+    "results/DAWN/ENTIRE/inference_results.csv",
+    "results/COMBINED/inference_results.csv",
+}
+
+INCLUDED_INFERENCE_STATUS = "included_in_repository"
+WITHHELD_ACDC_STATUS = "withheld_acdc_redistribution_restriction"
 
 
 def _normalise_names(value: object) -> list[str]:
@@ -234,6 +249,82 @@ def verify_formal_filenames() -> None:
     )
 
 
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def verify_real_world_inference_inventory() -> None:
+    rows = _read_csv(INFERENCE_INVENTORY_PATH)
+    assert len(rows) == 1466, "Unexpected real-world inference inventory size"
+
+    image_rows = [row for row in rows if row["artifact_type"] == "annotated_prediction"]
+    log_rows = [row for row in rows if row["artifact_type"] == "detection_log"]
+    included_rows = [row for row in rows if row["publication_status"] == INCLUDED_INFERENCE_STATUS]
+    withheld_rows = [row for row in rows if row["publication_status"] == WITHHELD_ACDC_STATUS]
+    included_images = [row for row in included_rows if row["artifact_type"] == "annotated_prediction"]
+
+    assert len(image_rows) == 1459, "Unexpected saved prediction count"
+    assert len(log_rows) == 7, "Unexpected inference-log count"
+    assert len(included_images) == 240, "Unexpected published DAWN prediction count"
+    assert len(included_rows) == 247, "Unexpected published inference artefact count"
+    assert len(withheld_rows) == 1219, "Unexpected ACDC-withheld prediction count"
+    assert {row["repository_path"] for row in log_rows} == INFERENCE_CSV_PATHS, (
+        "Inference-log destinations differ from the approved set"
+    )
+
+    repository_paths = [row["repository_path"] for row in included_rows]
+    assert len(repository_paths) == len(set(repository_paths)), "Duplicate published inference path"
+    assert all(row["dataset_content"] == "DAWN" for row in included_images), (
+        "Only DAWN image content may be published in the qualitative gallery"
+    )
+    assert all(row["dataset_content"] == "ACDC" for row in withheld_rows), (
+        "Only restricted ACDC predictions should carry the withheld status"
+    )
+    assert all(not row["repository_path"] for row in withheld_rows), (
+        "Withheld ACDC predictions must not have repository destinations"
+    )
+    assert all(not row["repository_sha256"] and not row["repository_bytes"] for row in withheld_rows), (
+        "Withheld ACDC predictions must not have repository integrity fields"
+    )
+
+    for row in rows:
+        source_path = Path(row["source_relative_path"])
+        assert not source_path.is_absolute(), "Inventory must not expose machine-specific source paths"
+        assert len(row["source_sha256"]) == 64 and all(
+            char in "0123456789abcdef" for char in row["source_sha256"]
+        ), (
+            f"Invalid SHA-256 in inference inventory: {row['source_relative_path']}"
+        )
+        assert int(row["source_bytes"]) > 0, f"Invalid byte size: {row['source_relative_path']}"
+        assert int(row["same_content_copies"]) >= 1, (
+            f"Invalid content-copy count: {row['source_relative_path']}"
+        )
+
+    for row in included_rows:
+        relative_path = row["repository_path"]
+        artefact_path = REPOSITORY_ROOT / relative_path
+        assert artefact_path.is_file(), f"Missing published inference artefact: {relative_path}"
+        assert len(row["repository_sha256"]) == 64, f"Missing repository SHA-256: {relative_path}"
+        assert artefact_path.stat().st_size == int(row["repository_bytes"]), f"Size mismatch: {relative_path}"
+        assert _sha256(artefact_path) == row["repository_sha256"], f"SHA-256 mismatch: {relative_path}"
+
+    assert all(
+        row["source_sha256"] == row["repository_sha256"]
+        and row["source_bytes"] == row["repository_bytes"]
+        for row in included_images
+    ), "Published prediction images must remain byte-identical to the saved source outputs"
+
+    print(
+        "INFERENCE EVIDENCE PASS: "
+        "240 DAWN prediction images and 7 detection logs verified; "
+        "1,219 ACDC-background predictions inventoried but withheld under the dataset licence"
+    )
+
+
 def verify_carla_route() -> None:
     with CARLA_ROUTE_PATH.open(encoding="utf-8") as handle:
         route = json.load(handle)
@@ -272,12 +363,14 @@ def main() -> None:
     verify_manifest()
     verify_training_presets()
     verify_formal_filenames()
+    verify_real_world_inference_inventory()
     verify_carla_route()
     verify_corrected_evidence()
     print(
         "REPOSITORY VERIFICATION PASS: "
         f"{len(CONFIG_PATHS)} configs, {len(APPROVED_RESULTS)} experiments, "
-        f"{len(APPROVED_RESULTS)} presets, 1 CARLA route, 1 corrected evidence set"
+        f"{len(APPROVED_RESULTS)} presets, 1 inference inventory, "
+        "1 CARLA route, 1 corrected evidence set"
     )
 
 

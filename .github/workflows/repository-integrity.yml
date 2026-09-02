@@ -23,7 +23,7 @@ jobs:
       - name: Install verifier dependency
         run: python -m pip install PyYAML==6.0.3
 
-      - name: Verify configs, evidence, presets, and CARLA route
+      - name: Verify configs, quantitative and inference evidence, presets, and CARLA route
         run: python src/evaluation/verify_repository.py
 
       - name: Verify final dissertation and defence package

@@ -161,7 +161,8 @@ Use repository artefacts in this order:
 2. `results/CORRECTED_2026-08-27/corrected_training_metrics.csv` for the four corrected run outcomes;
 3. `docs/CORRECTED_EVIDENCE_MANIFEST.csv` and checkpoint hashes for lineage;
 4. historical `results.csv` files only for preserved same-row provenance;
-5. CARLA and selected images only as qualitative/diagnostic evidence.
+5. real-world annotated predictions and CARLA images only as
+   qualitative/diagnostic evidence.
 
 Do not combine independent maxima from different epochs, replace the canonical matrix with older convenience summaries, or compare CARLA numbers directly with ACDC/DAWN validation metrics.
 
@@ -177,7 +178,15 @@ See [CARLA reproducibility](docs/CARLA_REPRODUCIBILITY.md) for the locked route,
 
 The verified environment is Windows, Python 3.12.10, Ultralytics 8.4.104, PyTorch 2.12.1+cu126, Torchvision 0.27.1+cu126, CUDA 12.6 and an NVIDIA RTX 3050 Laptop GPU with 6 GB VRAM.
 
-Raw datasets, model weights, generated videos outside the embedded presentation asset, local caches and failed/superseded runs are intentionally excluded because of size, licensing, privacy and evidence-governance concerns. Exact reruns require separately obtained datasets and weights plus compatible software and hardware. The repository supports method reconstruction and evidence audit; it does not promise bit-for-bit numerical identity on another system.
+Raw datasets, ACDC-background annotated predictions, model weights, generated
+videos outside the embedded presentation asset, local caches and
+failed/superseded runs are intentionally excluded because of licensing, size,
+privacy and evidence-governance concerns. Licence-compatible DAWN annotated
+predictions, all seven saved inference logs and a SHA-256 inventory of the full
+saved output collection are documented in [Real-world inference evidence](results/REAL_WORLD_INFERENCE_EVIDENCE.md).
+Exact reruns require separately obtained datasets and weights plus compatible
+software and hardware. The repository supports method reconstruction and evidence
+audit; it does not promise bit-for-bit numerical identity on another system.
 
 The notebooks preserve original development history, including 118 machine-specific Windows-path occurrences. They are archival records, not the supported portable route. See [Notebook provenance](docs/NOTEBOOK_PROVENANCE.md).
 

@@ -24,6 +24,21 @@ The original files below this directory remain compact artefacts from completed 
 
 Run `python src/evaluation/verify_repository.py` from the repository root to verify both this provenance chain and the corrected final evidence.
 
+## Real-world qualitative inference evidence
+
+The repository now includes 240 licence-compatible annotated DAWN predictions:
+
+- 120 from the DAWN Entire checkpoint in `DAWN/ENTIRE/qualitative_detections/`;
+- 120 from the Combined checkpoint evaluated on the DAWN portion of the mixed
+  validation union in `COMBINED/qualitative_detections/DAWN/`.
+
+Seven row-level inference logs are filed with their corresponding experiment.
+The complete 1,466-record saved-output inventory, SHA-256 integrity data,
+historical folder-name correction and dataset redistribution boundary are in
+[`REAL_WORLD_INFERENCE_EVIDENCE.md`](REAL_WORLD_INFERENCE_EVIDENCE.md). These
+outputs are qualitative execution evidence; they do not replace the corrected
+quantitative evidence above.
+
 ## Legacy and diagnostic summaries
 
 Some older summary artefacts were created for exploratory analysis and must not override the canonical manifest.
