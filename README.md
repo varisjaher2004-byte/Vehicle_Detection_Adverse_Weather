@@ -10,14 +10,14 @@ This repository evaluates how an Ultralytics **YOLOv8l** detector behaves when i
 
 | Goal | Open or run |
 |---|---|
-| Read the complete research | [Final dissertation](docs/submission/Varis_Kureshi_Dissertation_SUBMISSION_READY_FINAL_2026-08-31.docx) |
-| View the defence | [Final 20-slide presentation](docs/submission/Varis_Kureshi_Dissertation_Defence_MSC_SUBMISSION_READY_FINAL_2026-09-01.pptx) |
+| Read the complete research | [Final public dissertation copy](docs/submission/Varis_Kureshi_Dissertation_PUBLIC_REPOSITORY_COPY_FINAL_2026-09-07.docx) |
+| View the defence | [Final 24-slide presentation](docs/submission/Varis_Kureshi_Dissertation_Defence_FINAL_2026-09-07.pptx) |
 | Understand the project quickly | [Getting started](docs/GETTING_STARTED.md) |
 | Inspect the canonical numbers | [Seven-cell validation matrix](results/CORRECTED_2026-08-27/final_cross_domain_validation_matrix.csv) |
 | Understand the DAWN correction | [Label-integrity record](docs/LABEL_INTEGRITY_CORRECTION_2026-08-27.md) |
 | Check evidence rules | [Evidence-integrity guide](docs/EVIDENCE_INTEGRITY.md) |
 | Verify the repository | Run the three verification commands below |
-| Audit the final package | [Final repository audit](docs/FINAL_REPOSITORY_AUDIT_2026-09-01.md) |
+| Audit the final package | [Final submission update audit](docs/FINAL_SUBMISSION_UPDATE_2026-09-07.md) |
 | Check local-to-GitHub coverage | [Final D-drive coverage audit](docs/FINAL_D_DRIVE_COVERAGE_AUDIT_2026-09-02.md) |
 | Understand formal filenames | [File-naming convention and rename provenance](docs/FILE_NAMING_CONVENTION.md) |
 
@@ -33,7 +33,7 @@ python src/evaluation/verify_submission_package.py
 python -m compileall -q src
 ```
 
-The public-release verifier checks required files, GitHub size/type policy, notebook cleanliness, internal links and credential-shaped text. The research verifier checks active YAMLs, historical same-row evidence, training presets, the locked CARLA route and the corrected evidence set. The submission verifier checks final hashes, Office package integrity and metadata, the AI/ethics declaration boundary, the 20-slide/20-note structure and the embedded CARLA video.
+The public-release verifier checks required files, GitHub size/type policy, notebook cleanliness, internal links and credential-shaped text. The research verifier checks active YAMLs, historical same-row evidence, training presets, the locked CARLA route and the corrected evidence set. The submission verifier checks final hashes, Office package integrity and metadata, the AI/ethics declaration boundary, the 24-slide/24-note structure and the embedded CARLA video.
 
 ## Research at a glance
 
@@ -96,7 +96,7 @@ Combined training is not domain-balanced: ACDC contributes 79.1% of its training
 - SHA-256 checkpoint lineage, manifests and automated evidence verification;
 - CARLA Clear, Rain, Fog and synthetic-Night capture/diagnostic scripts;
 - compact historical and corrected result evidence;
-- final dissertation and 20-slide defence presentation with an embedded one-minute CARLA showreel.
+- final public dissertation copy and 24-slide defence presentation with an embedded one-minute CARLA showreel.
 
 The following were **not** implemented and must not be claimed as experimental results: Faster R-CNN or RT-DETR baselines, a new YOLO architecture, multiple training seeds, an untouched scene-grouped test set, confidence intervals, a complete class-by-weather error ledger, calibrated sim-to-real evaluation or autonomous-vehicle deployment validation.
 
@@ -123,7 +123,7 @@ Earlier DAWN and Combined outputs are preserved as historical provenance but are
 Vehicle_Detection_Adverse_Weather/
 |-- configs/                  # Active relative dataset YAMLs, presets and locked CARLA route
 |-- docs/
-|   |-- submission/           # Final dissertation and final 20-slide defence deck
+|   |-- submission/           # Final public dissertation copy and final 24-slide defence deck
 |   |-- GETTING_STARTED.md
 |   |-- EVIDENCE_INTEGRITY.md
 |   |-- LABEL_INTEGRITY_CORRECTION_2026-08-27.md
@@ -194,7 +194,7 @@ The notebooks preserve original development history, including 118 machine-speci
 
 ## Ethics and public-release boundary
 
-The implemented study uses public secondary datasets and CARLA and recruited no human participants. The dissertation's Blackboard submission remains subject to the university's full ethics-approval requirement. Signed UREC1 and publication forms may contain signatures or institutional metadata and should not be committed publicly without explicit approval and a privacy review. The public repository therefore focuses on research content, code, evidence and reproducibility.
+The implemented study uses public secondary datasets and CARLA and recruited no human participants. Blackboard records the ethics approval, and the private submission copy contains the completed UREC1 and Publication Procedure Form. The public dissertation copy withholds all seven administrative form pages so that student and supervisor signatures, institutional contact details and approval records are not republished. The research narrative, results, references and AI-use declaration remain aligned with the private submission copy.
 
 ## Citation and reuse
 

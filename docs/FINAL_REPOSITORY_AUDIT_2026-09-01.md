@@ -1,5 +1,7 @@
 # Final Repository Audit - updated 2 September 2026
 
+> Historical release checkpoint. The current submission-package record is [`FINAL_SUBMISSION_UPDATE_2026-09-07.md`](FINAL_SUBMISSION_UPDATE_2026-09-07.md).
+
 Project: *Performance Evaluation of YOLO-Based Vehicle Detection Under Adverse Environmental Conditions*
 
 Author: Varis Jahirbhai Kureshi (35042321)

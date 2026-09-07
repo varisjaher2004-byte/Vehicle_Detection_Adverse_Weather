@@ -1,5 +1,7 @@
 # Final D-Drive Research Coverage Audit - 2 September 2026
 
+> Historical local-coverage checkpoint. The current public dissertation and 24-slide defence package are recorded in [`FINAL_SUBMISSION_UPDATE_2026-09-07.md`](FINAL_SUBMISSION_UPDATE_2026-09-07.md).
+
 Project: *Performance Evaluation of YOLO-Based Vehicle Detection Under Adverse Environmental Conditions*
 
 Source reviewed: `D:\DMSc_Dissertation_SUBMISSION_READY\01_DISSERTATION`

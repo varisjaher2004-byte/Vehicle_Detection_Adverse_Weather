@@ -1,19 +1,19 @@
 # Final Research Documents
 
-This directory contains the research-content copies used to align the public repository with the final dissertation and defence presentation.
+This directory contains the final public research copies aligned with the private Blackboard submission.
 
 | File | Role | Verified structure |
 |---|---|---|
-| `Varis_Kureshi_Dissertation_SUBMISSION_READY_FINAL_2026-08-31.docx` | Final dissertation content | Main assessed text reported as 2,972 Word-counted words before References; references, AI declaration and appendices retained |
-| `Varis_Kureshi_Dissertation_Defence_MSC_SUBMISSION_READY_FINAL_2026-09-01.pptx` | Final defence deck | 16 main slides + 4 backup slides, 20 speaker-note pages and one embedded one-minute CARLA MP4 |
+| `Varis_Kureshi_Dissertation_PUBLIC_REPOSITORY_COPY_FINAL_2026-09-07.docx` | Final public dissertation copy | 84 pages; 2,993 Microsoft Word-counted words from Introduction to References; references, AI declaration and research appendices retained |
+| `Varis_Kureshi_Dissertation_Defence_FINAL_2026-09-07.pptx` | Final defence deck | 21 main slides + 3 backup slides, 24 sourced speaker-note pages and one embedded one-minute CARLA MP4 |
 
-SHA-256 digests and byte sizes are recorded in [`../FINAL_SUBMISSION_MANIFEST.csv`](../FINAL_SUBMISSION_MANIFEST.csv) and checked by `src/evaluation/verify_submission_package.py`. That verifier also checks authorship and creation-date metadata, Office package integrity, revision/comment boundaries, the transparent AI-use declaration, slide visibility, speaker-note sourcing and the embedded media count.
+SHA-256 digests and byte sizes are recorded in [`../FINAL_SUBMISSION_MANIFEST.csv`](../FINAL_SUBMISSION_MANIFEST.csv) and checked by `src/evaluation/verify_submission_package.py`. The verifier also checks authorship and creation-date metadata, Office package integrity, revision/comment boundaries, the transparent AI-use declaration, slide visibility, speaker-note sourcing and embedded media.
 
-## Administrative boundary
+## Administrative privacy boundary
 
-The dissertation text records the faculty requirement that ethics must be fully approved on Blackboard. The signed UREC1 form and signed/dated publication form are administrative submission items. They may contain signatures or institutional metadata and are not included as separate public repository files.
+The private Blackboard dissertation contains the completed UREC1 and Publication Procedure Form. The public repository copy replaces all seven administrative form images with explicit withholding notices. This prevents republication of signatures, institutional contact details and approval records while preserving pagination and the complete assessed research narrative.
 
-Before Blackboard submission, the student must confirm full ethics approval, insert the signed UREC1 in Appendix B, place the signed/dated publication form after it and verify the uploaded files. A later private administrative copy may therefore differ from this public research-content snapshot without changing the research metrics, code or evidence lineage.
+The public copy must not replace the private `SUBMIT_THIS` dissertation for Blackboard submission.
 
 ## Evidence boundary
 
