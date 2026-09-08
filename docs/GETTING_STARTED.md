@@ -6,8 +6,8 @@ This guide separates simple research inspection from full experiment reproductio
 
 ### Assessor or research reader
 
-1. Read the [final dissertation](submission/Varis_Kureshi_Dissertation_SUBMISSION_READY_FINAL_2026-08-31.docx).
-2. Open the [final defence presentation](submission/Varis_Kureshi_Dissertation_Defence_MSC_SUBMISSION_READY_FINAL_2026-09-01.pptx).
+1. Read the [final public dissertation copy](submission/Varis_Kureshi_Dissertation_PUBLIC_REPOSITORY_COPY_FINAL_2026-09-07.docx).
+2. Open the [final defence presentation](submission/Varis_Kureshi_Dissertation_Defence_FINAL_2026-09-07.pptx).
 3. Inspect the [seven-cell matrix](../results/CORRECTED_2026-08-27/final_cross_domain_validation_matrix.csv).
 4. Read [Evidence integrity](EVIDENCE_INTEGRITY.md) and the [DAWN correction record](LABEL_INTEGRITY_CORRECTION_2026-08-27.md) before interpreting older results.
 

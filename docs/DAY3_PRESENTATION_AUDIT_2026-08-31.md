@@ -1,6 +1,6 @@
 # Day 3 Defence Presentation Audit
 
-> Historical checkpoint: this 13-slide audit is retained for provenance. It is superseded for current access by `docs/FINAL_REPOSITORY_AUDIT_2026-09-01.md` and the final 20-slide deck under `docs/submission/`.
+> Historical checkpoint: this 13-slide audit is retained for provenance. It is superseded for current access by `docs/FINAL_SUBMISSION_UPDATE_2026-09-07.md` and the final 24-slide deck under `docs/submission/`.
 
 Project: *Performance Evaluation of YOLO-based Vehicle Detection under Adverse Environmental Conditions*
 

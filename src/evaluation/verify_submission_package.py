@@ -45,6 +45,7 @@ def core_properties(archive: ZipFile) -> dict[str, str]:
     names = {
         "title": (DC_NS, "title"),
         "subject": (DC_NS, "subject"),
+        "description": (DC_NS, "description"),
         "creator": (DC_NS, "creator"),
         "last_modified_by": (CORE_NS, "lastModifiedBy"),
         "created": (DCTERMS_NS, "created"),
@@ -91,11 +92,17 @@ def verify_dissertation(path: Path) -> None:
         assert required_members <= set(archive.namelist()), "Incomplete DOCX package"
         props = core_properties(archive)
         assert props["creator"] == EXPECTED_AUTHOR, f"Unexpected DOCX author: {props['creator']}"
-        assert props["created"] == "2026-06-06T14:45:00Z", f"Unexpected DOCX creation date: {props['created']}"
+        assert props["last_modified_by"] == EXPECTED_AUTHOR, (
+            f"Unexpected DOCX last-modified author: {props['last_modified_by']}"
+        )
+        assert props["created"] == "2026-09-06T08:39:00Z", f"Unexpected DOCX creation date: {props['created']}"
         assert props["title"] == (
-            "Performance Evaluation of YOLO-based Vehicle Detection under Adverse Environmental Conditions "
-            "Using Simulation and Real-World Datasets"
+            "Performance evaluation of YOLO-based vehicle detection under adverse conditions: "
+            "Validation-bound evidence across ACDC, corrected DAWN and Combined training"
         ), f"Unexpected DOCX title: {props['title']}"
+        assert "public repository copy" in props["description"].casefold(), (
+            "DOCX metadata does not identify the public repository copy"
+        )
         forbidden = forbidden_office_members(archive)
         assert not forbidden, f"DOCX contains comments, macro, ActiveX or revision parts: {forbidden}"
         tracked_changes: list[str] = []
@@ -106,20 +113,38 @@ def verify_dissertation(path: Path) -> None:
             if root.find(f".//{{{WORD_NS}}}ins") is not None or root.find(f".//{{{WORD_NS}}}del") is not None:
                 tracked_changes.append(member)
         assert not tracked_changes, f"DOCX contains tracked insertions/deletions: {tracked_changes}"
+        expected_public_admin_images = {
+            **{
+                f"word/media/image{index}.png": (
+                    "908D43A809CC2D249D0DB8262472F458C706F2468BB32F550F79638464B9C2B2"
+                )
+                for index in range(1, 7)
+            },
+            "word/media/image7.png": (
+                "B9B2217D2523EF845FE53562AE07031D16D3F3CAD1514AB896F1C2E7DFCC0963"
+            ),
+        }
+        for member, expected_hash in expected_public_admin_images.items():
+            assert member in archive.namelist(), f"Missing public administrative placeholder: {member}"
+            actual_hash = hashlib.sha256(archive.read(member)).hexdigest().upper()
+            assert actual_hash == expected_hash, f"Administrative placeholder mismatch: {member}"
         text = package_text(archive, "word/document.xml", WORD_NS)
     normalised = " ".join(text.split()).casefold()
 
     required_text = (
-        "Performance evaluation of YOLO-based vehicle detection under adverse environmental conditions",
+        "Performance evaluation of YOLO-based vehicle detection under adverse conditions",
+        "COMPUTING RESEARCH PROJECT (TRI3 BF-2025/6)",
+        "55-710244-BF-20256",
         "1. Introduction",
         "References",
         "Appendix A - AI Declaration",
         "Appendix B - Ethics Form and Approval Evidence",
+        "Appendix C - Official Publication Procedure Form",
         "Appendix G - Data, Code and Evidence",
         "Appendix J - Supporting Evidence",
         "Generative-AI tools were used within the permitted AITS 2 scope",
         "No passwords, authentication credentials, human-participant data",
-        "no ethics approval is claimed",
+        "public repository omits signed pages",
         "0.1362",
         "0.1122",
         "0.4069",
@@ -128,6 +153,8 @@ def verify_dissertation(path: Path) -> None:
     )
     for token in required_text:
         assert token.casefold() in normalised, f"Missing dissertation content: {token}"
+    for unwanted in ("chatgpt", "codex", "openai", "walnut exporter"):
+        assert unwanted not in normalised, f"Unwanted tool/template name found in dissertation: {unwanted}"
     assert "0.1984" not in normalised, "Superseded rounded F1 display found in dissertation"
     print(
         "DISSERTATION PASS: metadata, clean revision state, transparent AI/ethics declarations, "
@@ -140,13 +167,17 @@ def verify_defence(path: Path) -> None:
         assert archive.testzip() is None, "Corrupt PPTX member"
         props = core_properties(archive)
         assert props["creator"] == EXPECTED_AUTHOR, f"Unexpected PPTX author: {props['creator']}"
-        assert props["created"] == "2026-08-30T20:08:45.6080000Z", (
+        assert props["last_modified_by"] == EXPECTED_AUTHOR, (
+            f"Unexpected PPTX last-modified author: {props['last_modified_by']}"
+        )
+        assert props["created"] == "2026-08-31T23:10:35Z", (
             f"Unexpected PPTX creation date: {props['created']}"
         )
         assert props["title"] == (
-            "Performance Evaluation of YOLO-based Vehicle Detection under Adverse Environmental Conditions"
+            "Performance evaluation of YOLO-based vehicle detection under adverse conditions: "
+            "Validation-bound evidence across ACDC, corrected DAWN and Combined training"
         ), f"Unexpected PPTX title: {props['title']}"
-        assert props["subject"] == "MSc Artificial Intelligence Dissertation", (
+        assert props["subject"] == "MSc Artificial Intelligence dissertation defence", (
             f"Unexpected PPTX subject: {props['subject']}"
         )
         forbidden = forbidden_office_members(archive)
@@ -155,8 +186,8 @@ def verify_defence(path: Path) -> None:
         notes = numbered_members(archive, r"ppt/notesSlides/notesSlide\d+\.xml")
         media = [name for name in archive.namelist() if name.startswith("ppt/media/")]
         videos = [name for name in media if name.lower().endswith(".mp4")]
-        assert len(slides) == 20, f"Expected 20 slides, found {len(slides)}"
-        assert len(notes) == 20, f"Expected 20 note pages, found {len(notes)}"
+        assert len(slides) == 24, f"Expected 24 slides, found {len(slides)}"
+        assert len(notes) == 24, f"Expected 24 note pages, found {len(notes)}"
         assert len(videos) == 1, f"Expected one embedded MP4, found {len(videos)}"
         assert archive.getinfo(videos[0]).file_size > 1024 * 1024, "Embedded MP4 is unexpectedly small"
 
@@ -186,7 +217,7 @@ def verify_defence(path: Path) -> None:
         metadata_text = " ".join(
             archive.read(name).decode("utf-8", errors="ignore") for name in metadata_members
         ).casefold()
-        for unwanted in ("walnut exporter", "chatgpt"):
+        for unwanted in ("walnut exporter", "chatgpt", "codex", "openai"):
             assert unwanted not in metadata_text, f"Automated/template metadata found: {unwanted}"
 
         slide_text = " ".join(package_text(archive, name, DRAWING_NS) for name in slides)
@@ -197,11 +228,17 @@ def verify_defence(path: Path) -> None:
 
     required_text = (
         "Context, problem and proposed solution",
+        "COMPUTING RESEARCH PROJECT (TRI3 BF-2025/6)",
+        "55-710244-BF-20256",
         "Research question, aim, objectives and contribution",
+        "Research methodology and justification",
+        "Ethics and data governance",
+        "Implementation and testing evidence",
         "One chart captures the result: performance is domain dependent",
         "Direct transfer collapses because recall remains low",
         "Combined training improves balance",
         "CARLA demonstrates conditions—not real-world robustness",
+        "AI use declaration — AITS 2",
         "Backup: complete seven-cell validation matrix",
         "0.1362",
         "0.1122",
@@ -213,10 +250,12 @@ def verify_defence(path: Path) -> None:
     )
     for token in required_text:
         assert token.casefold() in normalised, f"Missing presentation content: {token}"
+    for unwanted in ("chatgpt", "codex", "openai", "walnut exporter"):
+        assert unwanted not in normalised, f"Unwanted tool/template name found in presentation: {unwanted}"
     assert ".1984" not in normalised, "Superseded rounded F1 display found in presentation"
     print(
         "DEFENCE PASS: clean metadata, no hidden slides/external links/revision parts, "
-        "20 slides, 20 sourced note pages and one embedded MP4"
+        "24 slides, 24 sourced note pages and one embedded MP4"
     )
 
 
