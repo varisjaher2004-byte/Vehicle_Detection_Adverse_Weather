@@ -133,6 +133,8 @@ def verify_dissertation(path: Path) -> None:
 
     required_text = (
         "Performance evaluation of YOLO-based vehicle detection under adverse conditions",
+        "COMPUTING RESEARCH PROJECT (TRI3 BF-2025/6)",
+        "55-710244-BF-20256",
         "1. Introduction",
         "References",
         "Appendix A - AI Declaration",
@@ -226,6 +228,8 @@ def verify_defence(path: Path) -> None:
 
     required_text = (
         "Context, problem and proposed solution",
+        "COMPUTING RESEARCH PROJECT (TRI3 BF-2025/6)",
+        "55-710244-BF-20256",
         "Research question, aim, objectives and contribution",
         "Research methodology and justification",
         "Ethics and data governance",

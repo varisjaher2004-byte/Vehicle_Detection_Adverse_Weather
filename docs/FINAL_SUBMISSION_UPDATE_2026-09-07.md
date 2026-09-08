@@ -1,4 +1,4 @@
-# Final Submission Update Audit - 7 September 2026
+# Final Submission Update Audit - refreshed 8 September 2026
 
 Project: *Performance evaluation of YOLO-based vehicle detection under adverse conditions: Validation-bound evidence across ACDC, corrected DAWN and Combined training*
 
@@ -14,20 +14,21 @@ The repository now reflects the final dissertation narrative and the final 24-sl
 
 | Artefact | SHA-256 | Bytes | Verification |
 |---|---|---:|---|
-| Public dissertation DOCX | `4051B6B5E77D1CD4CCDBE70264DBBE7539551685B208F4EB713EBB24C89BC48A` | 7,307,008 | 84 pages; 2,993 Microsoft Word-counted words from Introduction to References; no comments or tracked changes |
-| Final defence PPTX | `B6DA4FB5580AE5220C7D844095589404080401BA6B50C8BAB5083963C54C6DB7` | 68,400,016 | 24 slides; 24 sourced note pages; no hidden slides or comments; one embedded 68,068,847-byte MP4 |
+| Public dissertation DOCX | `2D37C750EE46BDDA50D6CA8DA51A7536E3DCAEED2AC9291CC15A238A8ED23483` | 7,343,739 | 84 pages; 2,981 Microsoft Word-counted words from Introduction to References; no comments or tracked changes |
+| Final defence PPTX | `749426F04EE5655F2182FE8B730747B4BF21B6020DA12BD462E74EC4922495A8` | 68,436,567 | 24 slides; 24 sourced note pages; no hidden slides or comments; one embedded 68,068,847-byte MP4 |
 
-The public dissertation was derived from the verified private submission file identified by SHA-256 `7A0861C064EE7B493B7F73E54CF2CFB067CC7FFD6850425F2B40D5AD2528DF51`. Only the ethics/publication visibility statement, public-copy metadata and seven administrative form images differ.
+The public dissertation was derived from the verified private submission file identified by SHA-256 `F685C9205F674B13D41DD2143D5809B7DB73C343EA25EFCB50AAB589E5C26E3A`. Only the ethics/publication visibility statement, public-copy metadata and seven administrative form images differ.
 
 ## Content alignment
 
 - The dissertation and presentation use the same exact research title.
+- Both cover pages identify Sheffield Hallam University and the module `COMPUTING RESEARCH PROJECT (TRI3 BF-2025/6)`, code `55-710244-BF-20256`.
 - Both retain the validation-bound interpretation that direct transfer was weak and Combined training offered the strongest overall balance without dominating every metric.
 - CARLA remains qualitative diagnostic evidence only.
 - The dissertation reports approved UREC1 evidence and the completed Publication Procedure Form as private Blackboard records.
 - The presentation states that Blackboard approval was recorded and that the signed copy appears in the private Appendix B.
 - The AITS 2 declaration remains present and supervisor-confirmed.
-- The final repository release commit and tag supersede the 2 September submission-package snapshot.
+- This working-branch package supersedes the 2 September submission-package snapshot; `main` and the final release tag remain unchanged until the final approval step.
 
 ## Privacy boundary
 
