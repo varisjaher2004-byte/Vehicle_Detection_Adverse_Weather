@@ -14,10 +14,10 @@ The repository now reflects the final dissertation narrative and the final 24-sl
 
 | Artefact | SHA-256 | Bytes | Verification |
 |---|---|---:|---|
-| Public dissertation DOCX | `2D37C750EE46BDDA50D6CA8DA51A7536E3DCAEED2AC9291CC15A238A8ED23483` | 7,343,739 | 84 pages; 2,981 Microsoft Word-counted words from Introduction to References; no comments or tracked changes |
+| Public dissertation DOCX | `EDBC237A0B1F31E1C008D5803C4766C44D8F04A1DD2A851A49A19C84E83ADD62` | 7,343,700 | 84 pages; 2,970 Microsoft Word-counted words from Introduction to References; no comments or tracked changes |
 | Final defence PPTX | `749426F04EE5655F2182FE8B730747B4BF21B6020DA12BD462E74EC4922495A8` | 68,436,567 | 24 slides; 24 sourced note pages; no hidden slides or comments; one embedded 68,068,847-byte MP4 |
 
-The public dissertation was derived from the verified private submission file identified by SHA-256 `F685C9205F674B13D41DD2143D5809B7DB73C343EA25EFCB50AAB589E5C26E3A`. Only the ethics/publication visibility statement, public-copy metadata and seven administrative form images differ.
+The public dissertation was derived from the verified private submission file identified by SHA-256 `3B91ABCA0CBB3D895F35992948E7B135C3625DBBEA307FAB3CFC0DB25456DA99`. Only the ethics/publication visibility statement, public-copy metadata and seven administrative form images differ.
 
 ## Content alignment
 

@@ -144,7 +144,7 @@ def verify_dissertation(path: Path) -> None:
         "Appendix J - Supporting Evidence",
         "Generative-AI tools were used within the permitted AITS 2 scope",
         "No passwords, authentication credentials, human-participant data",
-        "public repository copy withholds administrative signature pages",
+        "public repository omits signed pages",
         "0.1362",
         "0.1122",
         "0.4069",
