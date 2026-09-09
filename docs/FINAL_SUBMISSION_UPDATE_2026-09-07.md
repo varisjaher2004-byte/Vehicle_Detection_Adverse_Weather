@@ -1,4 +1,4 @@
-# Final Submission Update Audit - refreshed 8 September 2026
+# Final Submission Update Audit - refreshed 9 September 2026
 
 Project: *Performance evaluation of YOLO-based vehicle detection under adverse conditions: Validation-bound evidence across ACDC, corrected DAWN and Combined training*
 
@@ -15,7 +15,7 @@ The repository now reflects the final dissertation narrative and the final 24-sl
 | Artefact | SHA-256 | Bytes | Verification |
 |---|---|---:|---|
 | Public dissertation DOCX | `EDBC237A0B1F31E1C008D5803C4766C44D8F04A1DD2A851A49A19C84E83ADD62` | 7,343,700 | 84 pages; 2,970 Microsoft Word-counted words from Introduction to References; no comments or tracked changes |
-| Final defence PPTX | `749426F04EE5655F2182FE8B730747B4BF21B6020DA12BD462E74EC4922495A8` | 68,436,567 | 24 slides; 24 sourced note pages; no hidden slides or comments; one embedded 68,068,847-byte MP4 |
+| Final defence PPTX | `1081F0D3B735F533C016B910F08EDD331D344333F3E3DB16F68CCD626B6E1DD1` | 68,436,919 | 24 slides; 24 sourced note pages; no hidden slides or comments; one embedded 68,068,847-byte MP4; approved repository hyperlink on the cover |
 
 The public dissertation was derived from the verified private submission file identified by SHA-256 `3B91ABCA0CBB3D895F35992948E7B135C3625DBBEA307FAB3CFC0DB25456DA99`. Only the ethics/publication visibility statement, public-copy metadata and seven administrative form images differ.
 
@@ -23,12 +23,13 @@ The public dissertation was derived from the verified private submission file id
 
 - The dissertation and presentation use the same exact research title.
 - Both cover pages identify Sheffield Hallam University and the module `COMPUTING RESEARCH PROJECT (TRI3 BF-2025/6)`, code `55-710244-BF-20256`.
+- The presentation cover links directly to `https://github.com/varisjaher2004-byte/Vehicle_Detection_Adverse_Weather`, matching the dissertation.
 - Both retain the validation-bound interpretation that direct transfer was weak and Combined training offered the strongest overall balance without dominating every metric.
 - CARLA remains qualitative diagnostic evidence only.
 - The dissertation reports approved UREC1 evidence and the completed Publication Procedure Form as private Blackboard records.
 - The presentation states that Blackboard approval was recorded and that the signed copy appears in the private Appendix B.
 - The AITS 2 declaration remains present and supervisor-confirmed.
-- This working-branch package supersedes the 2 September submission-package snapshot; `main` and the final release tag remain unchanged until the final approval step.
+- This package supersedes the 2 September submission-package snapshot. The 9 September refinement adds only the cover repository hyperlink; the validation evidence and research release tag remain unchanged.
 
 ## Privacy boundary
 
