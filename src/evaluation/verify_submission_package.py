@@ -19,6 +19,9 @@ DCTERMS_NS = "http://purl.org/dc/terms/"
 CORE_NS = "http://schemas.openxmlformats.org/package/2006/metadata/core-properties"
 REL_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
 EXPECTED_AUTHOR = "Varis Jahirbhai Kureshi"
+EXPECTED_REPOSITORY_URL = (
+    "https://github.com/varisjaher2004-byte/Vehicle_Detection_Adverse_Weather"
+)
 
 
 def sha256(path: Path) -> str:
@@ -199,14 +202,29 @@ def verify_defence(path: Path) -> None:
         assert not hidden_slides, f"Hidden slides found: {hidden_slides}"
 
         external_relationships: list[str] = []
+        approved_repository_links = 0
         for member in archive.namelist():
             if not member.endswith(".rels"):
                 continue
             root = ET.fromstring(archive.read(member))
             for relationship in root.findall(f"{{{REL_NS}}}Relationship"):
                 if relationship.attrib.get("TargetMode") == "External":
-                    external_relationships.append(f"{member}: {relationship.attrib.get('Target', '')}")
-        assert not external_relationships, f"External PPTX relationships found: {external_relationships}"
+                    target = relationship.attrib.get("Target", "")
+                    relation_type = relationship.attrib.get("Type", "")
+                    if (
+                        member == "ppt/slides/_rels/slide1.xml.rels"
+                        and relation_type.endswith("/hyperlink")
+                        and target == EXPECTED_REPOSITORY_URL
+                    ):
+                        approved_repository_links += 1
+                    else:
+                        external_relationships.append(f"{member}: {target}")
+        assert not external_relationships, (
+            f"Unapproved external PPTX relationships found: {external_relationships}"
+        )
+        assert approved_repository_links == 1, (
+            f"Expected one approved cover repository link, found {approved_repository_links}"
+        )
 
         metadata_members = [
             name
@@ -230,6 +248,7 @@ def verify_defence(path: Path) -> None:
         "Context, problem and proposed solution",
         "COMPUTING RESEARCH PROJECT (TRI3 BF-2025/6)",
         "55-710244-BF-20256",
+        "github.com/varisjaher2004-byte/Vehicle_Detection_Adverse_Weather",
         "Research question, aim, objectives and contribution",
         "Research methodology and justification",
         "Ethics and data governance",
@@ -254,8 +273,8 @@ def verify_defence(path: Path) -> None:
         assert unwanted not in normalised, f"Unwanted tool/template name found in presentation: {unwanted}"
     assert ".1984" not in normalised, "Superseded rounded F1 display found in presentation"
     print(
-        "DEFENCE PASS: clean metadata, no hidden slides/external links/revision parts, "
-        "24 slides, 24 sourced note pages and one embedded MP4"
+        "DEFENCE PASS: clean metadata, no hidden slides/unapproved external links/revision parts, "
+        "one approved cover repository link, 24 slides, 24 sourced note pages and one embedded MP4"
     )
 
 

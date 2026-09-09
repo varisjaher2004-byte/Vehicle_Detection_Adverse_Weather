@@ -5,7 +5,7 @@ This directory contains the final public research copies aligned with the privat
 | File | Role | Verified structure |
 |---|---|---|
 | `Varis_Kureshi_Dissertation_PUBLIC_REPOSITORY_COPY_FINAL_2026-09-07.docx` | Final public dissertation copy | 84 pages; 2,970 Microsoft Word-counted words from Introduction to References; SHU module details, references, AI declaration and research appendices retained |
-| `Varis_Kureshi_Dissertation_Defence_FINAL_2026-09-07.pptx` | Final defence deck | SHU-branded cover; 21 main slides + 3 backup slides, 24 sourced speaker-note pages and one embedded one-minute CARLA MP4 |
+| `Varis_Kureshi_Dissertation_Defence_FINAL_2026-09-07.pptx` | Final defence deck | SHU-branded cover with a clickable project-repository link; 21 main slides + 3 backup slides, 24 sourced speaker-note pages and one embedded one-minute CARLA MP4 |
 
 SHA-256 digests and byte sizes are recorded in [`../FINAL_SUBMISSION_MANIFEST.csv`](../FINAL_SUBMISSION_MANIFEST.csv) and checked by `src/evaluation/verify_submission_package.py`. The verifier also checks authorship and creation-date metadata, Office package integrity, revision/comment boundaries, the transparent AI-use declaration, slide visibility, speaker-note sourcing and embedded media.
 

@@ -1,3 +1,3 @@
 artifact_id,path,role,sha256,bytes,format,verification_status
 FINAL_DISSERTATION,docs/submission/Varis_Kureshi_Dissertation_PUBLIC_REPOSITORY_COPY_FINAL_2026-09-07.docx,Final public dissertation copy with administrative signature pages withheld,EDBC237A0B1F31E1C008D5803C4766C44D8F04A1DD2A851A49A19C84E83ADD62,7343700,DOCX,PASS
-FINAL_DEFENCE,docs/submission/Varis_Kureshi_Dissertation_Defence_FINAL_2026-09-07.pptx,Final 24-slide defence with embedded CARLA showreel,749426F04EE5655F2182FE8B730747B4BF21B6020DA12BD462E74EC4922495A8,68436567,PPTX,PASS
+FINAL_DEFENCE,docs/submission/Varis_Kureshi_Dissertation_Defence_FINAL_2026-09-07.pptx,Final 24-slide defence with embedded CARLA showreel and cover repository link,1081F0D3B735F533C016B910F08EDD331D344333F3E3DB16F68CCD626B6E1DD1,68436919,PPTX,PASS
